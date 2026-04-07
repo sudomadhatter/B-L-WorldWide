@@ -1,0 +1,9 @@
+[default]
+# TODO: Update these paths when you create the .venv for your project
+# python-interpreter-path = "{{PROJECT_PATH}}\\.venv\\Scripts\\python.exe"
+# search_path = [
+#     "{{PROJECT_PATH}}",
+#     "{{PROJECT_PATH}}\\.venv\\Lib\\site-packages"
+# ]
+project_includes = ["backend/**/*.py"]
+# site_package_path = "{{PROJECT_PATH}}\\.venv\\Lib\\site-packages"
