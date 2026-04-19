@@ -1,0 +1,16 @@
+export const partners = [
+  { name: 'The Distributors', logo: '/images/home_17.png' },
+  { name: 'Hill International', logo: '/images/home_18.png' },
+  { name: 'Heineken', logo: '/images/home_19.png' },
+  { name: 'Hard Rock', logo: '/images/unreferenced_home_20.png' },
+  { name: 'Diageo', logo: '/images/unreferenced_home_21.png' },
+  { name: 'Dee Lincoln Prime', logo: '/images/home_22.png' },
+  { name: 'Bechtel', logo: '/images/home_23.png' },
+  { name: 'Ballast Nedam', logo: '/images/home_24.png' },
+  { name: 'Heinemann', logo: '/images/home_25.png' },
+  { name: 'SSA Marine', logo: '/images/home_26.png' },
+  { name: 'Splendor', logo: '/images/home_27.png' },
+  { name: 'Shaner', logo: '/images/home_28.png' },
+  { name: 'Royal Caribbean', logo: '/images/home_29.png' },
+  { name: 'Pernod Ricard', logo: '/images/home_30.png' },
+]

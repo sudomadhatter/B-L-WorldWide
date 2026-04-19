@@ -1,0 +1,4 @@
+# ILTT
+Type: page
+
+<h1>Majestic Cargo</h1>		<p><strong>Majestic freight forwarding and cargo airline</strong> stands at the crossroads of heritage and innovation — distributing world-class spirits, premium wines, and curated tobacco brands that define sophistication and quality. Our global network connects leading products, istilleries, vineyards, and tobacco houses with discerning markets across the Americas, Europe, west Africa, and Asia.</p><p>From exclusive trade partnerships to seamless logistics and compliance, we deliver not only exceptional products but also an unmatched standard of integrity, authenticity, and brand excellence. B &amp; L Worldwide — where tradition meets tomorrow’s global marketplace.</p>								<a href="https://b-lworldwide.company/wp-content/uploads/2025/11/Liqour-and-Tobacco-Trading-Company.pdf" target="_blank">n									Download Deckn					</a>
