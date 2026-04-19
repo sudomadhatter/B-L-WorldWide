@@ -62,23 +62,23 @@ Organize by USER VALUE, not technical layers:
 
 **✅ CORRECT Epic Examples (Standalone & Enable Future Epics):**
 
-- Epic 1: User Authentication & Profiles (users can register, login, manage profiles) - **Standalone: Complete auth system**
-- Epic 2: Content Creation (users can create, edit, publish content) - **Standalone: Uses auth, creates content**
-- Epic 3: Social Interaction (users can follow, comment, like content) - **Standalone: Uses auth + content**
-- Epic 4: Search & Discovery (users can find content and other users) - **Standalone: Uses all previous**
+- Epic A: User Authentication & Profiles (users can register, login, manage profiles) - **Standalone: Complete auth system**
+- Epic B: Content Creation (users can create, edit, publish content) - **Standalone: Uses auth, creates content**
+- Epic C: Social Interaction (users can follow, comment, like content) - **Standalone: Uses auth + content**
+- Epic D: Search & Discovery (users can find content and other users) - **Standalone: Uses all previous**
 
 **❌ WRONG Epic Examples (Technical Layers or Dependencies):**
 
-- Epic 1: Database Setup (creates all tables upfront) - **No user value**
-- Epic 2: API Development (builds all endpoints) - **No user value**
-- Epic 3: Frontend Components (creates reusable components) - **No user value**
-- Epic 4: Deployment Pipeline (CI/CD setup) - **No user value**
+- Epic A: Database Setup (creates all tables upfront) - **No user value**
+- Epic B: API Development (builds all endpoints) - **No user value**
+- Epic C: Frontend Components (creates reusable components) - **No user value**
+- Epic D: Deployment Pipeline (CI/CD setup) - **No user value**
 
 **🔗 DEPENDENCY RULES:**
 
 - Each epic must deliver COMPLETE functionality for its domain
-- Epic 2 must not require Epic 3 to function
-- Epic 3 can build upon Epic 1 & 2 but must stand alone
+- Epic B must not require Epic C to function
+- Epic C can build upon Epic A & B but must stand alone
 
 ### 3. Design Epic Structure Collaboratively
 

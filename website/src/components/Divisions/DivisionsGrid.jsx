@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import ScrollReveal from '../ScrollReveal';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -12,42 +13,48 @@ const divisions = [
     desc: 'Next-generation digital platforms spanning payment systems, blockchain infrastructure, AI studios, and e-commerce logistics.',
     icon: 'solar:cpu-bolt-linear',
     img: '/images/about-us_shared_06.webp',
-    subs: ['Tender', 'Digital Currencies', 'Plice', 'Splendor']
+    subs: ['Tender', 'Digital Currencies', 'Plice', 'Splendor'],
+    path: '/technology'
   },
   {
     title: 'Distribution & Logistics',
     desc: 'International trade networks delivering premium goods across duty-free, fresh produce, and liquor & tobacco channels.',
     icon: 'solar:box-minimalistic-linear',
     img: '/images/air-cargo_shared_08.jpg',
-    subs: ['ILTT', '24 Fresh', 'Duty Free Division']
+    subs: ['ILTT', '24 Fresh', 'Duty Free Division'],
+    path: '/distribution'
   },
   {
     title: 'Aviation',
     desc: 'A full-spectrum aerospace operation — from air cargo and pilot training to VTOL systems, MRO, and avionics fabrication.',
     icon: 'solar:plane-linear',
     img: '/images/aviation_03.jpg',
-    subs: ['Majestic Air Cargo', 'Flight Training', 'ATC', 'Avionics']
+    subs: ['Majestic Air Cargo', 'Flight Training', 'ATC', 'Avionics'],
+    path: '/aviation'
   },
   {
     title: 'Infrastructure & Development',
     desc: 'Transforming communities through port development, mixed-use residential, affordable housing, and premium hospitality.',
     icon: 'solar:buildings-3-linear',
     img: '/images/home_16.jpg',
-    subs: ['Port & Hotel Dev', 'Mixed Use', 'Housing', 'Dee Lincoln']
+    subs: ['Port & Hotel Dev', 'Mixed Use', 'Housing', 'Dee Lincoln'],
+    path: '/infrastructure'
   },
   {
     title: 'Baptiste Productions',
     desc: 'Feature films, documentaries, series, and commercial campaigns that amplify diverse voices and cultural narratives.',
     icon: 'solar:clapperboard-open-linear',
     img: '/images/series_02.jpg',
-    subs: ['Movies', 'Documentaries', 'Series', 'Commercials']
+    subs: ['Movies', 'Documentaries', 'Series', 'Commercials'],
+    path: '/productions'
   },
   {
     title: 'Education',
     desc: 'Nurturing global citizens through language immersion, aviation simulation, AI education, and 21st-century financial literacy.',
     icon: 'solar:square-academic-cap-linear',
     img: '/images/global-passport-academy-gpa_04.jpg',
-    subs: ['Global Passport Academy', 'Aviation Sim', 'AI Programs', 'Finance']
+    subs: ['Global Passport Academy', 'Aviation Sim', 'AI Programs', 'Finance'],
+    path: '/education'
   }
 ];
 
@@ -103,7 +110,8 @@ export default function DivisionsGrid() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {divisions.map((div, idx) => (
             <ScrollReveal key={idx} delay={idx * 100}>
-              <div 
+              <Link 
+                to={div.path}
                 className="group relative flex flex-col h-full rounded-[2rem] bg-white/60 backdrop-blur-2xl border border-white/60 shadow-[0_8px_30px_rgb(39,76,119,0.06)] overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(39,76,119,0.12)] cursor-pointer"
               >
                 {/* Image Header */}
@@ -142,7 +150,7 @@ export default function DivisionsGrid() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </ScrollReveal>
           ))}
         </div>

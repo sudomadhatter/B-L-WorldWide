@@ -1,13 +1,13 @@
-# Project Context — {{PROJECT_NAME}}
+# Project Context — B&L Worldwide
 
 **Purpose:** This file ensures BMAD agents (quick-spec, quick-dev, dev-story) are aware of project-specific architectural patterns and constraints that are NOT captured in generic BMAD templates.
 
 ---
 
 ## Project Identity
-- **Product**: {{PROJECT_NAME}} — {{PROJECT_DESCRIPTION}}
-- **Tech Stack**: Next.js (frontend) + Python/FastAPI (backend) + Google ADK + Firestore + Vertex AI Search
-- **Architecture**: Multi-agent system using Google Agent Development Kit (ADK), Visual Containment nesting pattern
+- **Product**: B&L Worldwide
+- **Tech Stack**: Vite + React + TailwindCSS (Frontend SPA)
+- **Architecture**: Single Page Application, Deep Corporate design system.
 
 ---
 
@@ -41,14 +41,8 @@ Update this file before closing your session.
 
 ## Critical Architecture Rules
 
-### Firestore Singleton
-All Firestore access goes through `backend/database.py` → `get_db()`. Never create a new Firestore client.
-
-### Agent Authority Boundaries
-Each agent has a single responsibility. See `.agent/gemini.md` → Rule G5 for the full scope list.
-
-### SSE Event Contract
-Backend event types are a strict contract with the frontend. Adding or removing event types requires coordinated changes on both sides.
+### Stateless UI
+Ensure that pages and views are largely stateless and depend on higher-order state propagation to stay true to SPA principles.
 
 ---
 

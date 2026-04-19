@@ -36,16 +36,16 @@ export default function PartnersSection() {
             {partners.map((logo, idx) => (
               <div 
                 key={idx} 
-                className="group relative w-full flex items-center justify-center p-6"
+                className="group relative w-full flex items-center justify-center p-6 transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
                 style={{ animation: `float 4s ease-in-out infinite ${idx * 0.2}s` }}
               >
-                {/* Massive Glow Area that blooms on hover/touch */}
-                <div className="absolute inset-x-0 inset-y-2 bg-[#a3cef1] opacity-0 blur-2xl rounded-full scale-0 group-hover:opacity-30 group-hover:scale-[2] transition-all duration-700 ease-out pointer-events-none z-0"></div>
+                {/* Subtle glow bloom centered on the logo */}
+                <div className="absolute inset-x-0 inset-y-2 bg-[#a3cef1] opacity-0 blur-2xl rounded-full scale-0 group-hover:opacity-20 group-hover:scale-[1.5] transition-all duration-700 ease-out pointer-events-none z-0"></div>
                 
                 <img 
                   src={logo} 
                   alt={`B&L Strategic Partner ${idx + 1}`} 
-                  className="relative z-10 max-w-full max-h-16 object-contain grayscale transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:grayscale-0 group-hover:-translate-y-4 group-hover:scale-125 group-hover:drop-shadow-[0_20px_30px_rgb(96,150,186,0.4)]"
+                  className="relative z-10 max-w-full max-h-16 object-contain grayscale opacity-80 transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:grayscale-0 group-hover:opacity-100 group-hover:-translate-y-2.5 group-hover:scale-110 group-hover:drop-shadow-[0_12px_20px_rgba(96,150,186,0.35)] rounded-xl"
                   loading="lazy"
                 />
               </div>

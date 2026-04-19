@@ -5,27 +5,62 @@ import { clsx } from 'clsx';
 const divisionMenus = [
   {
     name: 'Technology',
-    subs: ['Tender', 'Digital Currencies', 'Plice', 'Splendor'],
+    path: '/technology',
+    subs: [
+      { label: 'Tender', href: '/technology/tender' },
+      { label: 'Digital Currencies', href: '/technology/digital-currencies' },
+      { label: 'Plice', href: '/technology/plice' },
+      { label: 'Splendor', href: '/technology/splendor' },
+    ],
   },
   {
     name: 'Distribution',
-    subs: ['ILTT', '24 Fresh', 'Duty Free Division'],
+    path: '/distribution',
+    subs: [
+      { label: 'ILTT', href: '/distribution/iltt' },
+      { label: '24 Fresh', href: '/distribution/24-fresh' },
+      { label: 'Duty Free Division', href: '/distribution/duty-free' },
+    ],
   },
   {
     name: 'Aviation',
-    subs: ['Majestic Air Cargo', 'Flight Training', 'ATC', 'Avionics & MRO'],
+    path: '/aviation',
+    subs: [
+      { label: 'Majestic Air Cargo', href: '/aviation/air-cargo' },
+      { label: 'Flight Training', href: '/aviation/flight-training' },
+      { label: 'ATC', href: '/aviation/atc' },
+      { label: 'Avionics & MRO', href: '/aviation/mro' },
+    ],
   },
   {
     name: 'Infrastructure',
-    subs: ['Port & Hotel Dev', 'Mixed Use', 'Housing', 'Dee Lincoln'],
+    path: '/infrastructure',
+    subs: [
+      { label: 'Port & Hotel Dev', href: '/infrastructure/port-hotel' },
+      { label: 'Mixed Use', href: '/infrastructure/mixed-use' },
+      { label: 'Housing', href: '/infrastructure/housing' },
+      { label: 'Dee Lincoln', href: '/infrastructure/dee-lincoln' },
+    ],
   },
   {
     name: 'Productions',
-    subs: ['Movies', 'Documentaries', 'Series', 'Commercials'],
+    path: '/productions',
+    subs: [
+      { label: 'Movies', href: '/productions/movies' },
+      { label: 'Documentaries', href: '/productions/documentaries' },
+      { label: 'Series', href: '/productions/series' },
+      { label: 'Commercials', href: '/productions/commercials' },
+    ],
   },
   {
     name: 'Education',
-    subs: ['Global Passport Academy', 'Aviation Sim', 'AI Programs', 'Finance'],
+    path: '/education',
+    subs: [
+      { label: 'Global Passport Academy', href: '/education/global-passport-academy' },
+      { label: 'Aviation Sim', href: '/education/aviation-sim' },
+      { label: 'AI Programs', href: '/education/ai-programs' },
+      { label: 'Finance', href: '/education/finance' },
+    ],
   },
 ];
 
@@ -52,6 +87,18 @@ export default function Navbar() {
     setMegaMenuOpen(false);
   }, [location]);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   // Close mega-menu on click outside
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -67,8 +114,8 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'About', path: '#about' },
-    { name: 'Team', path: '#team' },
+    { name: 'About', path: '/about' },
+    { name: 'Team', path: '/team' },
     { name: 'Track Record', path: '#trackrecord' },
   ];
 
@@ -83,7 +130,7 @@ export default function Navbar() {
   );
 
   const linkStyle = clsx(
-    'text-sm font-bold transition-colors duration-200 hover:text-[#6096ba]',
+    'text-base font-extrabold transition-colors duration-200 hover:text-[#6096ba]',
     {
       'text-[#8b8c89]': isLight,
       'text-[#e7ecef]': !isLight,
@@ -171,13 +218,15 @@ export default function Navbar() {
             <div className="grid grid-cols-3 lg:grid-cols-6 gap-8">
               {divisionMenus.map((div) => (
                 <div key={div.name}>
-                  <h4 className="text-[#274c77] font-semibold text-sm mb-4 pb-2 border-b border-[#e7ecef]">{div.name}</h4>
+                  <Link to={div.path} className="text-[#274c77] font-extrabold text-lg mb-4 pb-2 border-b border-[#e7ecef] hover:text-[#6096ba] transition-colors block">
+                    {div.name}
+                  </Link>
                   <ul className="space-y-2.5">
                     {div.subs.map((sub) => (
-                      <li key={sub}>
-                        <a href="#" className="text-[#8b8c89] text-sm hover:text-[#6096ba] transition-colors font-medium">
-                          {sub}
-                        </a>
+                      <li key={sub.label}>
+                        <Link to={sub.href} className="text-[#8b8c89] text-sm font-extrabold hover:text-[#6096ba] transition-colors block">
+                          {sub.label}
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -190,27 +239,36 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-[#e7ecef]/95 backdrop-blur-xl border-b border-gray-200 shadow-xl md:hidden flex flex-col px-6 py-4 gap-4 pb-8 overflow-hidden z-40">
+        <div className="absolute top-full left-0 w-full h-[calc(100vh-76px)] bg-[#e7ecef]/98 backdrop-blur-3xl border-b border-gray-200 shadow-xl md:hidden flex flex-col px-6 py-4 gap-4 pb-24 overflow-y-auto z-40 overscroll-contain">
           
           {/* Divisions accordion-style in mobile */}
           <div className="text-[#274c77] font-medium py-2 border-b border-white/50">
-            <span className="text-xs font-bold tracking-widest text-[#6096ba] uppercase">Divisions</span>
+            <span className="text-xs font-extrabold tracking-widest text-[#6096ba] uppercase">Divisions</span>
           </div>
           {divisionMenus.map((div) => (
-            <a key={div.name} href="#divisions" className="text-[#274c77] font-medium py-1 pl-4 text-sm">
-              {div.name}
-            </a>
+            <div key={div.name} className="flex flex-col gap-2 relative">
+              <Link to={div.path} className="text-[#274c77] font-extrabold py-1 text-lg hover:text-[#6096ba] transition-colors block">
+                {div.name}
+              </Link>
+              <div className="flex flex-col pl-8 gap-2 pb-2">
+                {div.subs.map((sub) => (
+                  <Link key={sub.label} to={sub.href} className="text-[#8b8c89] text-sm font-extrabold hover:text-[#6096ba] transition-colors">
+                    {sub.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
           ))}
 
           <div className="h-px bg-white/50 my-2"></div>
 
           {navLinks.map((link) => (
             link.path.startsWith('#') ? (
-              <a key={link.name} href={isHomePage ? link.path : `/${link.path}`} className="text-[#274c77] font-medium py-2 border-b border-white/50">
+              <a key={link.name} href={isHomePage ? link.path : `/${link.path}`} className="text-[#274c77] font-bold text-base py-2 border-b border-white/50">
                 {link.name}
               </a>
             ) : (
-              <Link key={link.name} to={link.path} className="text-[#274c77] font-medium py-2 border-b border-white/50">
+              <Link key={link.name} to={link.path} className="text-[#274c77] font-bold text-base py-2 border-b border-white/50">
                 {link.name}
               </Link>
             )

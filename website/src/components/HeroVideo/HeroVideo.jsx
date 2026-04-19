@@ -56,7 +56,7 @@ export default function HeroVideo() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col justify-end h-full pb-32 md:pb-40">
         <div className={`transition-all duration-1000 ease-out transform ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
           
-          <h1 className="text-6xl md:text-8xl lg:text-[7.5rem] font-['Playfair_Display'] font-semibold text-white leading-[0.95] max-w-5xl text-balance drop-shadow-xl">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-['Montserrat'] font-extrabold text-white leading-[1.1] uppercase tracking-widest max-w-5xl text-balance drop-shadow-2xl">
             Distribution, Logistics<br />&amp; Technology
           </h1>
           <p className="mt-8 text-lg md:text-xl font-['Montserrat'] tracking-wide !text-white max-w-2xl font-medium leading-relaxed drop-shadow-md" style={{ color: '#ffffff' }}>
