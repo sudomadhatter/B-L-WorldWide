@@ -1,185 +1,113 @@
-# 🚀 Clean Optimized BMAD Workspace
+# B&L WorldWide Repository
 
-**Version:** 1.0.0
-**Created:** 2026-03-28
+**⚠️ AI AGENT INSTRUCTIONS: READ THIS FIRST**
+Welcome to the B&L WorldWide repository. This README serves as the primary system instruction manual for LLM agents (like Antigravity) setting up a fresh development environment (IDE) or performing onboarding for this codebase.
 
-A **ready-to-go project template** with all tooling, rules, BMAD method, agent skills, and development conventions pre-configured. Designed to eliminate months of manual setup by extracting battle-tested infrastructure from production projects.
+## 📁 Repository Architecture
+
+This is a monorepo containing a full-stack web application:
+
+1. **`website/` (Frontend)**: A React + Vite single-page application tailored for high-end cinematic user experiences.
+2. **`backend/` (Backend)**: A Python FastAPI microservice layer that leverages the Google Agent Development Kit (ADK), Firebase, and Google GenAI SDK.
+3. **`.agent/` & `_bmad/`**: Local AI agent rules, workflows, and skills used to enforce project standards and development velocity.
 
 ---
 
-## ⚡ Quick Start — New Project Setup
+## 🛠️ Fresh Environment Setup Guide
 
-### 1. Copy This Workspace
-```bash
-# Copy to your new project directory
-xcopy /E /I "clean-bmad-workspace" "your-new-project-AGY"
-```
+When initializing this project in a new workspace or IDE, execute the following steps in order:
 
-### 2. Find & Replace Placeholders
-Search for these placeholders and replace them with your project values:
+### 1. Environment Variables & Authentication
 
-| Placeholder | Replace With | Where Used |
-|------------|-------------|-----------|
-| `{{PROJECT_NAME}}` | Your project name (e.g., "MyApp") | `.agent/`, `_bmad-output/`, `.env.example` |
-| `{{PROJECT_PATH}}` | Full path (e.g., `c:\AGY-Projects\my-app-AGY`) | `.agent/rules/server-restart.md` |
-| `{{PROJECT_DESCRIPTION}}` | One-line description | `_bmad-output/project-context.md` |
-| `{{DATE}}` | Current date | `.agent/gemini.md`, `active-context.md` |
-| `{{USER_NAME}}` | Your name | BMAD configs |
+You must create an `auth_keys` directory in the root to store sensitive credentials. **Do not commit these files to version control.**
 
-### 3. Set Up Python Backend
-```bash
-cd your-new-project-AGY
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r backend/requirements.txt   # Create from docs/tech-stack.md template
-```
-
-### 4. Set Up Frontend
-```bash
-cd frontend
-npx create-next-app@latest ./ --typescript --tailwind --eslint --app --src-dir
-npm install   # Add dependencies from docs/tech-stack.md template
-```
-
-### 5. Configure Pyrefly
-Uncomment and update paths in `pyrefly.toml`:
-```toml
-[default]
-python-interpreter-path = "c:\\AGY-Projects\\your-project\\.venv\\Scripts\\python.exe"
-search_path = [
-    "c:\\AGY-Projects\\your-project",
-    "c:\\AGY-Projects\\your-project\\.venv\\Lib\\site-packages"
-]
-```
-
-### 6. Set Up Environment
 ```bash
 mkdir auth_keys
-copy .env.example auth_keys\.env
-# Edit auth_keys/.env with your real API keys
+cp .env.example auth_keys/.env
 ```
 
-### 7. Install Agent Skills
+**Required Keys Example (`auth_keys/.env`):**
+```env
+# ============================================================================
+# B&L WorldWide — Environment Configuration
+# ============================================================================
+
+# Google AI / Gemini API (Get from: https://aistudio.google.com/app/apikey)
+GEMINI_API_KEY=your_gemini_api_key_here
+
+# Google Cloud Platform (GCP)
+GCP_PROJECT_ID=your-gcp-project-id
+
+# Path to your Firebase/GCP service account JSON file
+GOOGLE_APPLICATION_CREDENTIALS=auth_keys/service-account.json
+
+# Optional: Vertex AI Search Data Stores
+# VERTEX_SEARCH_DB1_ID=your-datastore-id
+# VERTEX_SEARCH_LOCATION=global
+
+# Development & Debugging
+DEBUG=false
+LOG_LEVEL=INFO
+FASTAPI_RELOAD=true
+
+# Frontend API routing
+VITE_API_URL=http://localhost:8000
+```
+*Note: Make sure the human developer places their valid `service-account.json` into the `auth_keys/` folder as well.*
+
+### 2. Backend Setup (Python)
+
+The backend relies on Python, FastAPI, and Google ADK.
+
 ```bash
-# Official Google skills
-npx skills add firebase/agent-skills
-npx skills add google-gemini/gemini-skills
+# Create and activate a virtual environment
+python -m venv .venv
 
-# See docs/skills-registry.md for more options
+# Windows activation:
+.venv\Scripts\activate
+# Mac/Linux activation:
+# source .venv/bin/activate
+
+# Install dependencies
+pip install -r backend/requirements.txt
 ```
 
-### 8. Start Building!
-```
-/bmad-bmm-create-product-brief    # Start with a product brief
-/bmad-bmm-create-prd              # Create a PRD
-/bmad-bmm-create-architecture     # Design the architecture
-/bmad-bmm-create-epics-and-stories # Break into implementation tasks
-/bmad-bmm-dev-story               # Start building!
-```
+### 3. Frontend Setup (React + Vite)
 
----
+The frontend uses Node.js and npm.
 
-## 📁 Directory Structure
-
-```
-your-project/
-├── .agent/                    # AI Agent configuration
-│   ├── README.md              # Agent directives & architecture
-│   ├── gemini.md              # Project Constitution (schemas, rules, guardrails)
-│   ├── rules/                 # 9 mandatory rule files
-│   ├── skills/                # 633+ pre-installed agent skills
-│   └── workflows/             # Slash-command workflows
-│
-├── .gemini/                   # Gemini IDE configuration
-│   ├── GEMINI.md              # Master system prompt
-│   └── notes.md               # Session scratchpad
-│
-├── .vscode/                   # VS Code settings
-│
-├── _bmad/                     # BMAD Method engine (785 files)
-│   ├── bmm/                   # Business Model Method module
-│   ├── core/                  # Core module (agents, workflows)
-│   └── tea/                   # Test Architecture Enterprise module
-│
-├── _bmad-output/              # BMAD artifacts (fill per project)
-│   ├── active-context/        # Sprint state tracking
-│   ├── component-specs/       # Component reference cards
-│   ├── implementation-artifacts/
-│   ├── planning-artifacts/    # PRD, Architecture docs
-│   ├── test-artifacts/        
-│   └── project-context.md     # Project-specific patterns
-│
-├── docs/                      # Project documentation
-│   ├── tech-stack.md          # Our preferred technology defaults
-│   └── skills-registry.md    # Curated agent skills + install guide
-│
-├── backend/                   # Python backend scaffold
-│   ├── agents/                # ADK agent roster
-│   ├── routers/               # FastAPI endpoints
-│   ├── schemas/               # Pydantic models
-│   ├── services/              # Shared services
-│   ├── tools/                 # Shared tools (pure Python)
-│   └── tests/                 # Test suite
-│
-├── frontend/                  # Frontend scaffold
-│
-├── conftest.py                # Root pytest config
-├── pyproject.toml             # Pytest settings
-├── pyrefly.toml               # Python type checker config
-├── pyrightconfig.json         # Pyright config
-├── .env.example               # Environment template
-├── .gitignore                 # Comprehensive ignore rules
-└── .gitattributes             # LF normalization
+```bash
+cd website
+npm install
 ```
 
 ---
 
-## 🔧 What's Pre-Configured
+## 🚀 Running the Application Locally
 
-### Agent Rules (`.agent/rules/`)
-9 battle-tested rule files covering:
-- Visual Containment architecture enforcement
-- Gemini 3.0 model standards
-- Server restart automation
-- Code quality & best practices
-- ADK prompt engineering taxonomy
-- Windows terminal workarounds
+For local development, both servers need to be started:
 
-### BMAD Method (`_bmad/`)
-Complete installation with 785 files across 3 modules:
-- **BMM** — Stories, sprints, epics, project management
-- **Core** — Agent personas, workflow engine, templates
-- **TEA** — Test architecture, CI pipelines, traceability
+**Start Backend (from root directory):**
+```bash
+# Assuming virtual environment is activated
+uvicorn backend.main:app --reload --port 8000
+```
+*(Alternatively, use the built-in BMAD agent slash command: `/1_run-restart-dev-env` if applicable).*
 
-### Agent Skills (`.agent/skills/`)
-633+ pre-installed skills including:
-- Full BMAD skill suite (40+ workflows)
-- Firebase & GCP patterns
-- Python & React best practices
-- UI/UX Pro Max design skill
-- Systematic debugging methodology
-
-### Dev Workflows (`.agent/workflows/`)
-Slash-command workflows for:
-- `/1_run-restart-dev-env` — Clean server restart
-- `/1_run-all-tests-back_front` — Full test suite
-- `/1_check-for-tech-stack-updates` — Audit dependencies
-- `/1_adk-agent-testing` — ADK agent testing flow
-- All BMAD lifecycle commands
+**Start Frontend (from `website/` directory):**
+```bash
+cd website
+npm run dev
+```
 
 ---
 
-## 📚 Key Documentation
+## 🤖 Agent Workflow Reminders
 
-| Document | Purpose |
-|----------|---------|
-| [docs/tech-stack.md](docs/tech-stack.md) | Our preferred technology defaults with versions |
-| [docs/skills-registry.md](docs/skills-registry.md) | Curated GitHub skills + install commands |
-| [.agent/README.md](.agent/README.md) | Agent directives & architecture |
-| [.agent/gemini.md](.agent/gemini.md) | Project Constitution template |
+1. **Rule Verification**: Before making codebase changes, check the `.agent/rules/` directory for any architectural invariants or formatting mandates.
+2. **Context Discovery**: Always refer to `_bmad-output/planning-artifacts/prd.md` or `architecture.md` to understand the functional goals of the current sprint.
+3. **Artifact Generation**: When generating multi-section reports or architectural designs, write them out to Markdown files in the artifacts directory—never dump raw walls of text in the chat.
+4. **Visual Containment**: Strictly adhere to the separation of concerns: Backend logic belongs in `/backend`, and UI components belong in `/website/src/components`.
 
 ---
-
-## 🍎 Our Standard
-
-> If it doesn't feel like it came from Apple's design lab and function with the reliability of an aircraft system — **it's not finished.**
+*If you encounter any start-up issues, instruct the human developer to verify the GCP/Firebase IAM permissions inside the `service-account.json`.*
