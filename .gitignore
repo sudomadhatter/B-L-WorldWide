@@ -41,6 +41,7 @@ auth_keys/
 .env.production
 *.pem
 *.key
+*-sa.json
 
 # Firebase
 .firebase/

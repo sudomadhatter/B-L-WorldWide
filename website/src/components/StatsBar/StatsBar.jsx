@@ -75,7 +75,7 @@ export default function StatsBar() {
             <StatItem endValue={30} suffix="+" label="Companies & Brands" />
           </div>
           <div className="pt-8 md:pt-0 md:pl-12 flex justify-center md:justify-start">
-            <StatItem endValue={14} suffix="" label="Team Members" />
+            <StatItem endValue={12} suffix="" label="Team Members" />
           </div>
         </div>
       </ScrollReveal>

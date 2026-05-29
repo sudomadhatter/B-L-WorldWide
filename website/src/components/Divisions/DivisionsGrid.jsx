@@ -86,7 +86,7 @@ export default function DivisionsGrid() {
           <img 
             src="/images/divisions-bg-desktop.png" 
             alt="Global Divisions Background" 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-left lg:object-center"
           />
         </div>
         <div className="absolute inset-0 bg-[#e7ecef]/85 backdrop-blur-[2px]"></div>

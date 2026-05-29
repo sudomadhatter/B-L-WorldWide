@@ -119,18 +119,19 @@ export default function Navbar() {
     { name: 'Track Record', path: '#trackrecord' },
   ];
 
-  const isLight = isScrolled || !isHomePage || mobileMenuOpen || megaMenuOpen;
+  const isLight = mobileMenuOpen || megaMenuOpen;
 
-  const headerStyle = clsx(
+    const headerStyle = clsx(
     'fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ease-out',
     {
-      'bg-white/90 backdrop-blur-xl shadow-sm border-b border-gray-200/60 py-4 text-gray-900': isLight,
-      'bg-transparent py-6 text-white': !isLight,
+      'bg-white/90 backdrop-blur-xl shadow-sm border-b border-gray-200/60 pb-4 pt-[calc(env(safe-area-inset-top)+1rem)] text-gray-900': isLight,
+      'bg-black/10 backdrop-blur-sm pb-4 pt-[calc(env(safe-area-inset-top)+1rem)] text-white': !isLight && isScrolled,
+      'bg-transparent pb-6 pt-[calc(env(safe-area-inset-top)+1.5rem)] text-white': !isLight && !isScrolled,
     }
   );
 
   const linkStyle = clsx(
-    'text-base font-extrabold transition-colors duration-200 hover:text-[#6096ba]',
+    'text-lg font-black transition-colors duration-200 hover:text-[#6096ba] tracking-wide drop-shadow-sm',
     {
       'text-[#8b8c89]': isLight,
       'text-[#e7ecef]': !isLight,
@@ -139,6 +140,17 @@ export default function Navbar() {
 
   return (
     <header className={headerStyle}>
+      {/* iOS Overscroll Top Gap Fix: Extend the header's styles infinitely up */}
+      <div 
+        className={clsx(
+          "absolute bottom-full left-0 w-full h-[100vh] pointer-events-none -z-10 transition-all duration-300 ease-out",
+          {
+            'bg-white/90 backdrop-blur-xl': isLight,
+            'bg-transparent': !isLight,
+          }
+        )}
+      />
+      
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 z-50">
@@ -184,10 +196,10 @@ export default function Navbar() {
         {/* CTA & Mobile Toggle */}
         <div className="flex items-center gap-4 z-50">
           <button className={clsx(
-            "hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold transition-all rounded-full",
+            "hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold transition-all rounded-full shadow-lg hover:shadow-xl",
             {
-              "bg-[#6096ba] text-white hover:bg-[#274c77] hover:shadow-lg": isLight,
-              "bg-white/10 text-white backdrop-blur-md border border-white/20 hover:bg-white/20": !isLight
+              "bg-[#6096ba] text-white hover:bg-[#274c77]": isLight,
+              "bg-white/10 text-white backdrop-blur-md border border-white/20 hover:bg-white/20 hover:shadow-white/10": !isLight
             }
           )}>
             Contact Us

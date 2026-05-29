@@ -27,10 +27,10 @@ const teamMembers = [
     name: "Captain Jonathan Earl Baptiste",
     bio: "A second-generation aviation and business leader, Jonathan is an airline captain with American Airlines and holds degrees in aeronautics and communications. Fluent in English and Spanish, he blends global business experience with creative strategy, continuing the Baptiste legacy across aviation, real estate, and international markets."
   },
-  {
-    name: "Daniel Lohneiss",
-    bio: "An airline pilot with American Airlines and former COO of a Google Partner technology company, Daniel Lohneiss brings a rare convergence of cockpit command and C-suite leadership to B&L Worldwide. His experience across service industry consulting, educational technology, and aviation instructor for both Part 141 and 135 programs, makes him uniquely qualified in teaching and leading across many verticals."
-  },
+  // {
+  //   name: "Daniel Lohneiss",
+  //   bio: "An airline pilot with American Airlines and former COO of a Google Partner technology company, Daniel Lohneiss brings a rare convergence of cockpit command and C-suite leadership to B&L Worldwide. His experience across service industry consulting, educational technology, and aviation instruction for both Part 141 and 135 programs, makes him a uniquely qualified teacher and leader across verticals."
+  // },
   {
     name: "Mr. Todor Ivanov",
     bio: "Todor Ivanov is the Founder and CEO of Splendor Labs, leading the development of high-performance blockchain infrastructure for AI-native payments and machine commerce. With 20+ years in capital markets, he has driven innovations across fintech, blockchain, and AI. Todor also leads WhiteRock's venture capital investment strategy."

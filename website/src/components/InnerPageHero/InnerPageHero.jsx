@@ -14,8 +14,8 @@ export default function InnerPageHero({ title, subtitle, bgImage }) {
       <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#1b263b] via-[#274c77]/80 to-transparent mix-blend-multiply" />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-6xl text-white tracking-tight mb-4 drop-shadow-xl uppercase" style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 800, letterSpacing: '0.05em' }}>
+      <div className="relative z-10 text-center px-6 sm:px-8 md:px-12 max-w-4xl mx-auto">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl text-white tracking-tight mb-4 drop-shadow-xl uppercase" style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 500, letterSpacing: '0.05em' }}>
           {title}
         </h1>
         {subtitle && (
