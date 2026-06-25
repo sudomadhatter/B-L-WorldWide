@@ -11,16 +11,16 @@ On Windows, Pyrefly requires **native path separators** (double backslashes in T
 
 **✅ Correct:**
 ```toml
-python-interpreter-path = "c:\\AGY-Projects\\aviationChat-AGY\\.venv\\Scripts\\python.exe"
+python-interpreter-path = "c:\\Sudo_Hatter_Command\\aviationChat-AGY\\.venv\\Scripts\\python.exe"
 search_path = [
-    "c:\\AGY-Projects\\aviationChat-AGY",
-    "c:\\AGY-Projects\\aviationChat-AGY\\.venv\\Lib\\site-packages"
+    "c:\\Sudo_Hatter_Command\\aviationChat-AGY",
+    "c:\\Sudo_Hatter_Command\\aviationChat-AGY\\.venv\\Lib\\site-packages"
 ]
 ```
 
 **❌ Wrong:**
 ```toml
-python-interpreter-path = "c:/AGY-Projects/aviationChat-AGY/.venv/Scripts/python.exe"
+python-interpreter-path = "c:/Sudo_Hatter_Command/Projects/aviationChat-AGY/.venv/Scripts/python.exe"
 ```
 
 ## 2. Pyrefly Does NOT Hot-Reload Config

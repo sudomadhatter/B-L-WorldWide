@@ -127,11 +127,11 @@ Every page that exists in the extracted content, its role, and the markdown sour
 
 | Page | Source File | Purpose | Content Type |
 |---|---|---|---|
-| **Home** | [page_home.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_home.md) | Corporate switchboard · Hero · 6 Division accordions · News · Partners | Hub |
-| **About Us** | [page_about-us.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_about-us.md) | Mission, Vision, Our Reach, Portfolio of Excellence (6 division summaries) | Informational |
-| **Meet Our Team** | [page_meet-our-team.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_meet-our-team.md) | 14 executive bios with photos | Team |
-| **Contact** | [page_contact.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_contact.md) | Phone, email, address, embedded Google Map | Form |
-| **Multilingual** | [page_multilingual.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_multilingual.md) | Language selector / i18n gateway | Utility |
+| **Home** | [page_home.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_home.md) | Corporate switchboard · Hero · 6 Division accordions · News · Partners | Hub |
+| **About Us** | [page_about-us.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_about-us.md) | Mission, Vision, Our Reach, Portfolio of Excellence (6 division summaries) | Informational |
+| **Meet Our Team** | [page_meet-our-team.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_meet-our-team.md) | 14 executive bios with photos | Team |
+| **Contact** | [page_contact.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_contact.md) | Phone, email, address, embedded Google Map | Form |
+| **Multilingual** | [page_multilingual.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_multilingual.md) | Language selector / i18n gateway | Utility |
 
 ---
 
@@ -139,11 +139,11 @@ Every page that exists in the extracted content, its role, and the markdown sour
 
 | Page | Source File | Purpose |
 |---|---|---|
-| **Technology** (Landing) | [page_technology.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_technology.md) | Division overview · Digital Currency strategy · Core Innovations |
-| Tender | [page_tender.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_tender.md) | TenderDX payment tech product |
-| Digital Currencies | [page_e281a0digital-currencys.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_e281a0digital-currencys.md) | Blockchain & crypto initiative |
-| Plice | [page_plice.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_plice.md) | E-commerce / logistics tech platform |
-| Splendor | [page_splendor.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_splendor.md) | Splendor Labs blockchain infra |
+| **Technology** (Landing) | [page_technology.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_technology.md) | Division overview · Digital Currency strategy · Core Innovations |
+| Tender | [page_tender.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_tender.md) | TenderDX payment tech product |
+| Digital Currencies | [page_e281a0digital-currencys.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_e281a0digital-currencys.md) | Blockchain & crypto initiative |
+| Plice | [page_plice.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_plice.md) | E-commerce / logistics tech platform |
+| Splendor | [page_splendor.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_splendor.md) | Splendor Labs blockchain infra |
 
 > [!NOTE]
 > **Nanocar**, **Surface Wise**, **Splendor AI Studio**, and **Deck Splendor** appear only as accordion items on the homepage linking to external URLs or PDFs. They do not have dedicated internal content pages.
@@ -154,9 +154,9 @@ Every page that exists in the extracted content, its role, and the markdown sour
 
 | Page | Source File | Purpose |
 |---|---|---|
-| ILTT | [page_iltt.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_iltt.md) | International Liquor & Tobacco Trading (links to PDF) |
-| 24 Fresh | [page_fresh-24.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_fresh-24.md) | Fresh produce logistics program |
-| Duty Free | [page_duty-free.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_duty-free.md) | Duty-free retail distribution |
+| ILTT | [page_iltt.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_iltt.md) | International Liquor & Tobacco Trading (links to PDF) |
+| 24 Fresh | [page_fresh-24.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_fresh-24.md) | Fresh produce logistics program |
+| Duty Free | [page_duty-free.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_duty-free.md) | Duty-free retail distribution |
 
 > [!IMPORTANT]
 > There is **no dedicated landing page** for the Distribution & Logistics division. On the original site, this content lived entirely on the homepage accordion. For the rebuild, a dedicated landing page should be created.
@@ -167,13 +167,13 @@ Every page that exists in the extracted content, its role, and the markdown sour
 
 | Page | Source File | Purpose |
 |---|---|---|
-| **Aviation** (Landing) | [page_aviation.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_aviation.md) | Division overview · MAJESTIC P.L.T. pillars |
-| Majestic Air Cargo | [page_air-cargo.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_air-cargo.md) | Air freight operations |
-| Aerospace Flight Training | [page_aerospace-flight-training-and-mentoring.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_aerospace-flight-training-and-mentoring.md) | Pilot training & mentorship |
-| Air Traffic Control | [page_air-traffic-controilers.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_air-traffic-controilers.md) | ATC training program |
-| VTOL / Drones | [page_vtol-drone-pilotless-vehicles.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_vtol-drone-pilotless-vehicles.md) | Autonomous vehicle division |
-| Avionics & Power Plant | [page_avionics-air-frame-fabrication-and-power-plant.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_avionics-air-frame-fabrication-and-power-plant.md) | Airframe fabrication & repair |
-| MRO | [page_maintenance-repair-operations.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_maintenance-repair-operations.md) | Maintenance, Repair & Overhaul |
+| **Aviation** (Landing) | [page_aviation.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_aviation.md) | Division overview · MAJESTIC P.L.T. pillars |
+| Majestic Air Cargo | [page_air-cargo.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_air-cargo.md) | Air freight operations |
+| Aerospace Flight Training | [page_aerospace-flight-training-and-mentoring.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_aerospace-flight-training-and-mentoring.md) | Pilot training & mentorship |
+| Air Traffic Control | [page_air-traffic-controilers.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_air-traffic-controilers.md) | ATC training program |
+| VTOL / Drones | [page_vtol-drone-pilotless-vehicles.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_vtol-drone-pilotless-vehicles.md) | Autonomous vehicle division |
+| Avionics & Power Plant | [page_avionics-air-frame-fabrication-and-power-plant.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_avionics-air-frame-fabrication-and-power-plant.md) | Airframe fabrication & repair |
+| MRO | [page_maintenance-repair-operations.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_maintenance-repair-operations.md) | Maintenance, Repair & Overhaul |
 
 ---
 
@@ -181,10 +181,10 @@ Every page that exists in the extracted content, its role, and the markdown sour
 
 | Page | Source File | Purpose |
 |---|---|---|
-| Port & Hotel Development | [page_port.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_port.md) | Maritime ports, waterfront hospitality, lightbox gallery |
-| Mixed Use Residential | [page_mixed-use-residential.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_mixed-use-residential.md) | Real estate development |
-| Affordable / VA / HUD | [page_affordable-va-hud-housing.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_affordable-va-hud-housing.md) | Government & veteran housing |
-| Food & Beverage (Dee Lincoln) | [page_dee-lincoln-prime.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_dee-lincoln-prime.md) | Dee Lincoln Prime steakhouse |
+| Port & Hotel Development | [page_port.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_port.md) | Maritime ports, waterfront hospitality, lightbox gallery |
+| Mixed Use Residential | [page_mixed-use-residential.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_mixed-use-residential.md) | Real estate development |
+| Affordable / VA / HUD | [page_affordable-va-hud-housing.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_affordable-va-hud-housing.md) | Government & veteran housing |
+| Food & Beverage (Dee Lincoln) | [page_dee-lincoln-prime.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_dee-lincoln-prime.md) | Dee Lincoln Prime steakhouse |
 
 > [!IMPORTANT]
 > There is **no dedicated landing page** for the Infrastructure division. Like Distribution, it only existed as a homepage accordion. A landing page should be created for the rebuild.
@@ -195,10 +195,10 @@ Every page that exists in the extracted content, its role, and the markdown sour
 
 | Page | Source File | Purpose |
 |---|---|---|
-| **Film Production** (Landing) | [page_film-production.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_film-production.md) | Division overview · Captain Bronn · Afro Excelencia · Photo gallery |
-| Documentaries | [page_documentaries.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_documentaries.md) | Afro Excelencia documentary |
-| Series | [page_series.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_series.md) | Television series content |
-| Commercials & Campaigns | [page_commercial-and-campaigns.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_commercial-and-campaigns.md) | Advertising campaigns |
+| **Film Production** (Landing) | [page_film-production.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_film-production.md) | Division overview · Captain Bronn · Afro Excelencia · Photo gallery |
+| Documentaries | [page_documentaries.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_documentaries.md) | Afro Excelencia documentary |
+| Series | [page_series.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_series.md) | Television series content |
+| Commercials & Campaigns | [page_commercial-and-campaigns.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_commercial-and-campaigns.md) | Advertising campaigns |
 
 ---
 
@@ -206,10 +206,10 @@ Every page that exists in the extracted content, its role, and the markdown sour
 
 | Page | Source File | Purpose |
 |---|---|---|
-| Global Passport Academy | [page_global-passport-academy-gpa.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_global-passport-academy-gpa.md) | Language learning platform · AI tutor "Amira" · University partnerships |
-| Aviation Simulator | [page_aviation-simulator.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_aviation-simulator.md) | Flight simulation training |
-| AI | [page_ai-2.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_ai-2.md) | AI initiatives |
-| Digital Currency & Finance | [page_digital-currency-and-21st-century-finance.md](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/page_digital-currency-and-21st-century-finance.md) | Fintech educational content |
+| Global Passport Academy | [page_global-passport-academy-gpa.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_global-passport-academy-gpa.md) | Language learning platform · AI tutor "Amira" · University partnerships |
+| Aviation Simulator | [page_aviation-simulator.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_aviation-simulator.md) | Flight simulation training |
+| AI | [page_ai-2.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_ai-2.md) | AI initiatives |
+| Digital Currency & Finance | [page_digital-currency-and-21st-century-finance.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_digital-currency-and-21st-century-finance.md) | Fintech educational content |
 
 > [!IMPORTANT]
 > There is **no dedicated landing page** for the Educational division either. A landing page should be created.

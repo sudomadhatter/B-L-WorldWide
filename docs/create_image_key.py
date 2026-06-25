@@ -46,7 +46,7 @@ with open(image_key_file, 'w', encoding='utf-8') as f:
             f.write(f"### Image: `{img_url}`\n")
             f.write(f"**Used in:**\n")
             for page in sorted(image_map[img_url]):
-                f.write(f"- [{page}](file:///c:/AGY-Projects/B&L%20WorldWide/docs/website_content/{page})\n")
+                f.write(f"- [{page}](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/{page})\n")
             f.write("\n")
 
 print(f"Image key generated with {len(image_map)} images.")

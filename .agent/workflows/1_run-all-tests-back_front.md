@@ -13,7 +13,7 @@ Navigate to the backend and run pytest:
 
 // turbo
 ```powershell
-cd c:\AGY-Projects\aviationChat-AGY
+cd c:\Sudo_Hatter_Command\Projects\aviationChat-AGY
 .\.venv\Scripts\pytest backend/tests/ -v
 ```
 
@@ -23,7 +23,7 @@ cd c:\AGY-Projects\aviationChat-AGY
 If the root venv is not configured:
 
 ```powershell
-cd c:\AGY-Projects\aviationChat-AGY\backend
+cd c:\Sudo_Hatter_Command\Projects\aviationChat-AGY\backend
 ..\.venv\Scripts\pytest tests/ -v
 ```
 
@@ -32,7 +32,7 @@ Navigate to the frontend and run tests:
 
 // turbo
 ```powershell
-cd c:\AGY-Projects\aviationChat-AGY\frontend
+cd c:\Sudo_Hatter_Command\Projects\aviationChat-AGY\frontend
 npm test
 ```
 
@@ -42,7 +42,7 @@ npm test
 Generate a coverage report for the backend:
 
 ```powershell
-cd c:\AGY-Projects\aviationChat-AGY
+cd c:\Sudo_Hatter_Command\Projects\aviationChat-AGY
 .\.venv\Scripts\pytest backend/tests/ --cov=backend --cov-report=html
 ```
 

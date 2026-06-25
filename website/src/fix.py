@@ -2,7 +2,7 @@
 import os
 import glob
 
-base_dir = r'C:\AGY-Projects\B&L WorldWide\website\src\pages\divisions'
+base_dir = r'C:\Sudo_Hatter_Command\Projects\B&L WorldWide\website\src\pages\divisions'
 files = glob.glob(base_dir + '/**/*.jsx', recursive=True)
 
 for file in files:

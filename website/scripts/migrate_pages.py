@@ -43,7 +43,7 @@ MAPPING = [
     ("pages/divisions/education", "Finance.jsx", "page_e281a0digital-currencys.md", "Digital Currency Education")
 ]
 
-BASE_DIR = r"c:/AGY-Projects/B&L WorldWide"
+BASE_DIR = r"c:/Sudo_Hatter_Command/Projects/B&L WorldWide"
 DOCS_DIR = os.path.join(BASE_DIR, "docs/website_content")
 SRC_DIR = os.path.join(BASE_DIR, "website/src")
 

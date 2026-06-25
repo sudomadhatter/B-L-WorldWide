@@ -111,7 +111,7 @@ Launch the FastAPI backend using the project venv.
 
 ```powershell
 // turbo
-cd c:\AGY-Projects\aviationChat-AGY
+cd c:\Sudo_Hatter_Command\Projects\aviationChat-AGY
 backend\.venv\Scripts\uvicorn backend.main:app --host 0.0.0.0 --port 8000
 ```
 
@@ -122,7 +122,7 @@ Launch the Next.js development server.
 
 ```powershell
 // turbo
-cd c:\AGY-Projects\aviationChat-AGY\frontend
+cd c:\Sudo_Hatter_Command\Projects\aviationChat-AGY\frontend
 Start-Sleep -Seconds 5
 npm run dev
 ```
@@ -145,7 +145,7 @@ screenshot_page(filename="startup_verification.png")
 - Browser screenshot confirms the app loads
 
 **Troubleshooting:**
-- Backend "Module not found" → ensure you are in the root `c:\AGY-Projects\aviationChat-AGY` directory.
+- Backend "Module not found" → ensure you are in the root `c:\Sudo_Hatter_Command\Projects\aviationChat-AGY` directory.
 - Frontend fails to start → check if `npm install` is needed in `frontend/`.
 - Frontend exits immediately with `Exit Code 1` → port still in TIME_WAIT; wait 5s and rerun `npm run dev`.
 - Port 8000 still occupied → run `netstat -ano | findstr :8000` to find the PID.

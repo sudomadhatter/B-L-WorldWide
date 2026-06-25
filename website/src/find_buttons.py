@@ -1,7 +1,7 @@
 import os
 import re
 
-directory = 'C:/AGY-Projects/B&L WorldWide/website/src/pages'
+directory = 'C:/Sudo_Hatter_Command/Projects/B&L WorldWide/website/src/pages'
 pattern = re.compile(r'<(a|button|Link)[^>]+className="[^"]*(bg-\[\#6096ba\]|bg-white/10)[^>]*>(.*?)</\1>', re.DOTALL)
 
 for root, _, files in os.walk(directory):

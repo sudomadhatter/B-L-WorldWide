@@ -1,7 +1,7 @@
 import os
 import re
 
-directory = 'C:/AGY-Projects/B&L WorldWide/website/src/pages'
+directory = 'C:/Sudo_Hatter_Command/Projects/B&L WorldWide/website/src/pages'
 # Find any <a> or <Link> that has a className with 'px-' and 'py-', suggesting it's a button.
 pattern = re.compile(r'(<a|<Link)[^>]+className="[^"]*px-[^"]*py-[^"]*"[^>]*>([\s\S]*?)(</a>|</Link>)', re.DOTALL)
 
