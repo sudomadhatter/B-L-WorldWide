@@ -1,10 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function HeroVideo() {
   const [mounted, setMounted] = useState(false);
+  const mobileVideoRef = useRef(null);
+  const desktopVideoRef = useRef(null);
 
   useEffect(() => {
     setMounted(true);
+
+    // React does not reliably reflect the `muted` attribute onto the DOM,
+    // which causes browsers to block autoplay and show a play button.
+    // Force muted at the property level and kick off playback explicitly.
+    [mobileVideoRef, desktopVideoRef].forEach((ref) => {
+      const video = ref.current;
+      if (!video) return;
+      video.muted = true;
+      video.defaultMuted = true;
+      const playAttempt = video.play();
+      if (playAttempt && typeof playAttempt.catch === 'function') {
+        playAttempt.catch(() => {
+          /* Autoplay may still be blocked before user interaction; poster remains. */
+        });
+      }
+    });
   }, []);
 
   return (
@@ -18,10 +36,12 @@ export default function HeroVideo() {
         Hidden on medium and larger screens
       */}
       <video
+        ref={mobileVideoRef}
         autoPlay
         loop
         muted
         playsInline
+        preload="auto"
         poster="/images/air-cargo_01.jpg"
         className="md:hidden absolute top-0 left-0 w-full h-full object-cover scale-[1.02]"
       >
@@ -33,10 +53,12 @@ export default function HeroVideo() {
         Hidden on small screens
       */}
       <video
+        ref={desktopVideoRef}
         autoPlay
         loop
         muted
         playsInline
+        preload="auto"
         poster="/images/air-cargo_01.jpg"
         className="hidden md:block absolute top-0 left-0 w-full h-full object-cover scale-[1.02]"
       >
