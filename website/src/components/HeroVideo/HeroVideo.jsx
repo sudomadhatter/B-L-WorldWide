@@ -16,6 +16,7 @@ export default function HeroVideo() {
       if (!video) return;
       video.muted = true;
       video.defaultMuted = true;
+      video.loop = true;
       const playAttempt = video.play();
       if (playAttempt && typeof playAttempt.catch === 'function') {
         playAttempt.catch(() => {
