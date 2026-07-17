@@ -1,6 +1,32 @@
 # B&L Worldwide — Website Information Architecture
 
-> **Purpose**: This document is the definitive blueprint for rebuilding the B&L Worldwide corporate website. It maps every page, its content purpose, its parent-child relationship in the navigation tree, and the image assets it consumes. All data is derived from the 33 extracted WordPress content pages.
+> **Purpose**: This document is the living reference for the B&L Worldwide corporate website. It began as the rebuild blueprint derived from the 33 extracted WordPress content pages; it now also tracks the **as-built** state of the new React site so the two can be compared at a glance.
+>
+> **Status**: 🟢 **LIVE** at <https://b-lworldwide.web.app> (Firebase Hosting) — last shipped story: iOS hero-video autoplay/loop fix, 2026-07-17.
+
+---
+
+## 0. Build Status Snapshot (as of 2026-07-17)
+
+| Item | State |
+|---|---|
+| **Stack** | Vite 8 · React 19 · React Router 7 · Tailwind CSS 4 · lucide-react |
+| **Hosting** | Firebase Hosting, SPA rewrite `** → /index.html`, project `b-lworldwide` |
+| **CI/CD** | GitHub Actions `firebase-deploy.yml` — deploys on push to `main` |
+| **Routes built** | **33 of 33** planned content routes (see §12) |
+| **Division landings** | All 6 built — including the 3 (Distribution, Infrastructure, Education) that the old WordPress site never had |
+| **Homepage** | Fully redesigned section stack (see §5) — the old accordion layout is retired |
+| **Hero** | Autoplaying background video, separate desktop/mobile MP4s (`/assets/hero-desktop.mp4`, `/assets/hero-mobile.mp4`, 16 MB each), programmatic `muted`/`loop` for iOS |
+| **Not built** | VTOL/Drones sub-page · Multilingual · `/news` route · 404 page · site search |
+| **Unwired** | Contact form submit · newsletter Subscribe · navbar "Contact Us" button · hero CTAs · footer social/legal links (see `_01_My/Docs/link_map.md` for the authoritative wire-up tracker) |
+
+### Recent story log
+
+| Date | Story | Outcome |
+|---|---|---|
+| 2026-07-17 | Fix hero video autoplay on iOS | `video.loop = true` set programmatically in `HeroVideo.jsx`; merged + deployed live |
+| 2026-07-16 | Firebase Hosting deploy workflow (#1, #2) | CI deploy on `main` push; `package-lock.json` synced so `npm ci` passes |
+| earlier | Full site build-out | 33 routes, redesigned homepage, division landings, data-driven nav/news/partners |
 
 ---
 
@@ -18,25 +44,28 @@
 
 ---
 
-## 2. High-Level Site Map
+## 2. High-Level Site Map (As Built)
 
-The site is organized as a **Hub & Spoke** model: a central homepage acts as a switchboard into **6 core business divisions**, each with its own landing page and 2–8 child pages. Utility pages (About, Team, Contact) sit outside the divisions.
+The site is organized as a **Hub & Spoke** model: a central homepage acts as a switchboard into **6 core business divisions**, each with its own landing page and 3–4 child pages. Utility pages (About, Team, Contact) sit outside the divisions.
+
+Dashed red nodes = planned but **not yet built**.
 
 ```mermaid
-graph TD
-    HOME["🏠 HOME"]
+flowchart TD
+    HOME["🏠 HOME  /"]
 
     HOME --> TECH["💻 Technology"]
-    HOME --> LOGISTICS["🚚 Distribution & Logistics"]
+    HOME --> LOGISTICS["🚚 Distribution and Logistics"]
     HOME --> AVIATION["✈️ Aviation"]
-    HOME --> INFRA["🏗️ Infrastructure & Development"]
+    HOME --> INFRA["🏗️ Infrastructure and Development"]
     HOME --> PRODUCTIONS["🎬 Baptiste Productions"]
     HOME --> EDUCATION["🎓 Educational Division"]
 
     HOME --> ABOUT["ℹ️ About Us"]
     HOME --> TEAM["👥 Meet Our Team"]
     HOME --> CONTACT["📞 Contact"]
-    HOME --> MULTILINGUAL["🌐 Multilingual"]
+    HOME --> NEWSPAGE["📰 News (route)"]
+    HOME --> MULTILINGUAL["🌐 Multilingual / i18n"]
 
     %% Technology Children
     TECH --> TENDER["Tender"]
@@ -53,27 +82,26 @@ graph TD
     AVIATION --> AIRCARGO["Majestic Air Cargo"]
     AVIATION --> FLTTRAIN["Aerospace Flight Training"]
     AVIATION --> ATC["Air Traffic Control Training"]
+    AVIATION --> AVMRO["Avionics and MRO (merged page)"]
     AVIATION --> VTOL["VTOL / Drones"]
-    AVIATION --> AVIONICS["Avionics & Power Plant"]
-    AVIATION --> MRO["MRO"]
 
     %% Infrastructure Children
-    INFRA --> PORT["Port & Hotel Development"]
+    INFRA --> PORT["Port and Hotel Development"]
     INFRA --> MIXED["Mixed Use Residential"]
     INFRA --> HOUSING["Affordable / VA / HUD Housing"]
-    INFRA --> FOOD["Food & Beverage (Dee Lincoln)"]
+    INFRA --> FOOD["Dee Lincoln (Food and Beverage)"]
 
     %% Productions Children
     PRODUCTIONS --> MOVIES["Movies (Captain Bronn)"]
     PRODUCTIONS --> DOCS["Documentaries (Afro Excelencia)"]
     PRODUCTIONS --> SERIES["Series"]
-    PRODUCTIONS --> COMMERCIALS["Commercials & Campaigns"]
+    PRODUCTIONS --> COMMERCIALS["Commercials and Campaigns"]
 
     %% Education Children
     EDUCATION --> GPA["Global Passport Academy"]
     EDUCATION --> AVIATIONSIM["Aviation Simulator"]
-    EDUCATION --> AI["AI"]
-    EDUCATION --> FINANCE["Digital Currency & 21st Century Finance"]
+    EDUCATION --> AI["AI Programs"]
+    EDUCATION --> FINANCE["Digital Currency and 21st Century Finance"]
 
     style HOME fill:#1a1a2e,stroke:#e94560,color:#fff,stroke-width:3px
     style TECH fill:#16213e,stroke:#0f3460,color:#fff
@@ -82,159 +110,148 @@ graph TD
     style INFRA fill:#16213e,stroke:#0f3460,color:#fff
     style PRODUCTIONS fill:#16213e,stroke:#0f3460,color:#fff
     style EDUCATION fill:#16213e,stroke:#0f3460,color:#fff
+
+    classDef notBuilt fill:#3d1f1f,stroke:#e94560,color:#fff,stroke-dasharray: 5 5
+    class VTOL,NEWSPAGE,MULTILINGUAL notBuilt
 ```
+
+> [!NOTE]
+> **Changes vs. the original WordPress plan**: Avionics & Power Plant and MRO were **merged into one page** at `/aviation/mro`. VTOL/Drones appears as a pill on the homepage DivisionsGrid but has **no page yet**. Multilingual and a dynamic `/news` route were deferred.
 
 ---
 
-## 3. Navigation Menu Structure
+## 3. Navigation Menu Structure (As Built)
 
-The main navigation is a **mega-menu** with 6 division dropdowns plus utility links.
+`Navbar.jsx` renders **6 division dropdowns** (data-driven from `divisionMenus`), in-page anchor links on the homepage (`#divisions`, `#about`, `#team`, `#trackrecord`), and a **Contact Us** button (⚠️ currently unwired — should link to `/contact`).
 
 ```mermaid
-graph LR
-    subgraph "Primary Navigation Bar"
+flowchart LR
+    subgraph NavBar ["Primary Navigation Bar"]
         direction LR
-        LOGO["B&L Logo"] --- NAV1["Technology ▾"]
-        NAV1 --- NAV2["Distribution & Logistics ▾"]
+        LOGO["B-L Logo → /"] --- NAV1["Technology ▾"]
+        NAV1 --- NAV2["Distribution ▾"]
         NAV2 --- NAV3["Aviation ▾"]
         NAV3 --- NAV4["Infrastructure ▾"]
-        NAV4 --- NAV5["Baptiste Productions ▾"]
+        NAV4 --- NAV5["Productions ▾"]
         NAV5 --- NAV6["Education ▾"]
-        NAV6 --- NAV7["About Us"]
-        NAV7 --- NAV8["Team"]
-        NAV8 --- NAV9["Contact"]
+        NAV6 --- NAV7["Anchor links (home only)"]
+        NAV7 --- NAV8["Contact Us button (unwired ⚠️)"]
     end
 ```
 
-### Dropdown Contents
+### Dropdown Contents (actual `Navbar.jsx` data)
 
 | Menu Item | Dropdown Sub-Items |
 |---|---|
-| **Technology** | Tender · Digital Currencies · Plice · Nanocar · Splendor · Surface Wise · Splendor AI Studio · Deck Splendor |
-| **Distribution & Logistics** | ILTT · Plice · 24 Fresh · Duty Free |
-| **Aviation** | Majestic Air Cargo · Aerospace Flight Training · Air Traffic Control · VTOL/Drones · Avionics & Power Plant · MRO |
-| **Infrastructure & Development** | Port & Hotel Development · Mixed Use Residential · Affordable/VA/HUD Housing · Food & Beverage (Dee Lincoln) |
-| **Baptiste Productions** | Movies · Documentaries · Series · Commercials & Campaigns |
-| **Educational Division** | Global Passport Academy · Aviation Simulation · AI · Digital Currency & 21st Century Finance |
+| **Technology** → `/technology` | Tender · Digital Currencies · Plice · Splendor |
+| **Distribution** → `/distribution` | ILTT · 24 Fresh · Duty Free Division |
+| **Aviation** → `/aviation` | Majestic Air Cargo · Flight Training · ATC · Avionics & MRO |
+| **Infrastructure** → `/infrastructure` | Port & Hotel Dev · Mixed Use · Housing · Dee Lincoln |
+| **Productions** → `/productions` | Movies · Documentaries · Series · Commercials |
+| **Education** → `/education` | Global Passport Academy · Aviation Sim · AI Programs · Finance |
+
+> [!NOTE]
+> The old WordPress mega-menu also listed Nanocar, Surface Wise, Splendor AI Studio, and Deck Splendor under Technology — those were external/PDF links and are intentionally not in the rebuilt nav.
 
 ---
 
 ## 4. Page Inventory — Complete Manifest
 
-Every page that exists in the extracted content, its role, and the markdown source file.
+Every page, its extracted-content source (relative to `docs/website_content/`), and its live route.
 
 ### 4.1 Global / Utility Pages
 
-| Page | Source File | Purpose | Content Type |
+| Page | Source File | Live Route | Status |
 |---|---|---|---|
-| **Home** | [page_home.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_home.md) | Corporate switchboard · Hero · 6 Division accordions · News · Partners | Hub |
-| **About Us** | [page_about-us.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_about-us.md) | Mission, Vision, Our Reach, Portfolio of Excellence (6 division summaries) | Informational |
-| **Meet Our Team** | [page_meet-our-team.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_meet-our-team.md) | 14 executive bios with photos | Team |
-| **Contact** | [page_contact.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_contact.md) | Phone, email, address, embedded Google Map | Form |
-| **Multilingual** | [page_multilingual.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_multilingual.md) | Language selector / i18n gateway | Utility |
-
----
+| **Home** | [page_home.md](../website_content/page_home.md) | `/` | ✅ Built (redesigned — see §5) |
+| **About Us** | [page_about-us.md](../website_content/page_about-us.md) | `/about` | ✅ Built |
+| **Meet Our Team** | [page_meet-our-team.md](../website_content/page_meet-our-team.md) | `/team` | ✅ Built |
+| **Contact** | [page_contact.md](../website_content/page_contact.md) | `/contact` | ✅ Built (⚠️ form submit unwired) |
+| **Multilingual** | [page_multilingual.md](../website_content/page_multilingual.md) | — | ❌ Deferred (was a stub on the old site) |
 
 ### 4.2 Division: Technology
 
-| Page | Source File | Purpose |
-|---|---|---|
-| **Technology** (Landing) | [page_technology.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_technology.md) | Division overview · Digital Currency strategy · Core Innovations |
-| Tender | [page_tender.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_tender.md) | TenderDX payment tech product |
-| Digital Currencies | [page_e281a0digital-currencys.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_e281a0digital-currencys.md) | Blockchain & crypto initiative |
-| Plice | [page_plice.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_plice.md) | E-commerce / logistics tech platform |
-| Splendor | [page_splendor.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_splendor.md) | Splendor Labs blockchain infra |
+| Page | Source File | Live Route | Status |
+|---|---|---|---|
+| **Technology** (Landing) | [page_technology.md](../website_content/page_technology.md) | `/technology` | ✅ Built |
+| Tender | [page_tender.md](../website_content/page_tender.md) | `/technology/tender` | ✅ Built |
+| Digital Currencies | [page_e281a0digital-currencys.md](../website_content/page_e281a0digital-currencys.md) | `/technology/digital-currencies` | ✅ Built |
+| Plice | [page_plice.md](../website_content/page_plice.md) | `/technology/plice` | ✅ Built (⚠️ external URL still needed) |
+| Splendor | [page_splendor.md](../website_content/page_splendor.md) | `/technology/splendor` | ✅ Built |
 
 > [!NOTE]
-> **Nanocar**, **Surface Wise**, **Splendor AI Studio**, and **Deck Splendor** appear only as accordion items on the homepage linking to external URLs or PDFs. They do not have dedicated internal content pages.
-
----
+> **Nanocar**, **Surface Wise**, **Splendor AI Studio**, and **Deck Splendor** remain external links / PDFs only — no internal pages, matching the original site.
 
 ### 4.3 Division: Distribution & Logistics
 
-| Page | Source File | Purpose |
-|---|---|---|
-| ILTT | [page_iltt.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_iltt.md) | International Liquor & Tobacco Trading (links to PDF) |
-| 24 Fresh | [page_fresh-24.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_fresh-24.md) | Fresh produce logistics program |
-| Duty Free | [page_duty-free.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_duty-free.md) | Duty-free retail distribution |
-
-> [!IMPORTANT]
-> There is **no dedicated landing page** for the Distribution & Logistics division. On the original site, this content lived entirely on the homepage accordion. For the rebuild, a dedicated landing page should be created.
-
----
+| Page | Source File | Live Route | Status |
+|---|---|---|---|
+| **Distribution** (Landing) | — (new page, no WP source) | `/distribution` | ✅ Built — *gap from the old site closed* |
+| ILTT | [page_iltt.md](../website_content/page_iltt.md) | `/distribution/iltt` | ✅ Built (links to hosted PDF) |
+| 24 Fresh | [page_fresh-24.md](../website_content/page_fresh-24.md) | `/distribution/24-fresh` | ✅ Built |
+| Duty Free | [page_duty-free.md](../website_content/page_duty-free.md) | `/distribution/duty-free` | ✅ Built |
 
 ### 4.4 Division: Aviation
 
-| Page | Source File | Purpose |
-|---|---|---|
-| **Aviation** (Landing) | [page_aviation.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_aviation.md) | Division overview · MAJESTIC P.L.T. pillars |
-| Majestic Air Cargo | [page_air-cargo.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_air-cargo.md) | Air freight operations |
-| Aerospace Flight Training | [page_aerospace-flight-training-and-mentoring.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_aerospace-flight-training-and-mentoring.md) | Pilot training & mentorship |
-| Air Traffic Control | [page_air-traffic-controilers.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_air-traffic-controilers.md) | ATC training program |
-| VTOL / Drones | [page_vtol-drone-pilotless-vehicles.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_vtol-drone-pilotless-vehicles.md) | Autonomous vehicle division |
-| Avionics & Power Plant | [page_avionics-air-frame-fabrication-and-power-plant.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_avionics-air-frame-fabrication-and-power-plant.md) | Airframe fabrication & repair |
-| MRO | [page_maintenance-repair-operations.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_maintenance-repair-operations.md) | Maintenance, Repair & Overhaul |
-
----
+| Page | Source File | Live Route | Status |
+|---|---|---|---|
+| **Aviation** (Landing) | [page_aviation.md](../website_content/page_aviation.md) | `/aviation` | ✅ Built |
+| Majestic Air Cargo | [page_air-cargo.md](../website_content/page_air-cargo.md) | `/aviation/air-cargo` | ✅ Built |
+| Aerospace Flight Training | [page_aerospace-flight-training-and-mentoring.md](../website_content/page_aerospace-flight-training-and-mentoring.md) | `/aviation/flight-training` | ✅ Built |
+| Air Traffic Control | [page_air-traffic-controilers.md](../website_content/page_air-traffic-controilers.md) | `/aviation/atc` | ✅ Built |
+| Avionics & Power Plant + MRO | [page_avionics-air-frame-fabrication-and-power-plant.md](../website_content/page_avionics-air-frame-fabrication-and-power-plant.md) · [page_maintenance-repair-operations.md](../website_content/page_maintenance-repair-operations.md) | `/aviation/mro` | ✅ Built — **two WP pages merged into one** (`AvionicsMro.jsx`) |
+| VTOL / Drones | [page_vtol-drone-pilotless-vehicles.md](../website_content/page_vtol-drone-pilotless-vehicles.md) | — | ❌ **Not built** (referenced as a homepage pill; content exists) |
 
 ### 4.5 Division: Infrastructure & Development
 
-| Page | Source File | Purpose |
-|---|---|---|
-| Port & Hotel Development | [page_port.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_port.md) | Maritime ports, waterfront hospitality, lightbox gallery |
-| Mixed Use Residential | [page_mixed-use-residential.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_mixed-use-residential.md) | Real estate development |
-| Affordable / VA / HUD | [page_affordable-va-hud-housing.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_affordable-va-hud-housing.md) | Government & veteran housing |
-| Food & Beverage (Dee Lincoln) | [page_dee-lincoln-prime.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_dee-lincoln-prime.md) | Dee Lincoln Prime steakhouse |
-
-> [!IMPORTANT]
-> There is **no dedicated landing page** for the Infrastructure division. Like Distribution, it only existed as a homepage accordion. A landing page should be created for the rebuild.
-
----
+| Page | Source File | Live Route | Status |
+|---|---|---|---|
+| **Infrastructure** (Landing) | — (new page, no WP source) | `/infrastructure` | ✅ Built — *gap from the old site closed* |
+| Port & Hotel Development | [page_port.md](../website_content/page_port.md) | `/infrastructure/port-hotel` | ✅ Built (links to Trident PDF) |
+| Mixed Use Residential | [page_mixed-use-residential.md](../website_content/page_mixed-use-residential.md) | `/infrastructure/mixed-use` | ✅ Built |
+| Affordable / VA / HUD | [page_affordable-va-hud-housing.md](../website_content/page_affordable-va-hud-housing.md) | `/infrastructure/housing` | ✅ Built |
+| Food & Beverage (Dee Lincoln) | [page_dee-lincoln-prime.md](../website_content/page_dee-lincoln-prime.md) | `/infrastructure/dee-lincoln` | ✅ Built |
 
 ### 4.6 Division: Baptiste Productions
 
-| Page | Source File | Purpose |
-|---|---|---|
-| **Film Production** (Landing) | [page_film-production.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_film-production.md) | Division overview · Captain Bronn · Afro Excelencia · Photo gallery |
-| Documentaries | [page_documentaries.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_documentaries.md) | Afro Excelencia documentary |
-| Series | [page_series.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_series.md) | Television series content |
-| Commercials & Campaigns | [page_commercial-and-campaigns.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_commercial-and-campaigns.md) | Advertising campaigns |
-
----
+| Page | Source File | Live Route | Status |
+|---|---|---|---|
+| **Productions** (Landing) | [page_film-production.md](../website_content/page_film-production.md) | `/productions` | ✅ Built |
+| Movies | [page_film-production.md](../website_content/page_film-production.md) (Captain Bronn section) | `/productions/movies` | ✅ Built |
+| Documentaries | [page_documentaries.md](../website_content/page_documentaries.md) | `/productions/documentaries` | ✅ Built |
+| Series | [page_series.md](../website_content/page_series.md) | `/productions/series` | ✅ Built |
+| Commercials & Campaigns | [page_commercial-and-campaigns.md](../website_content/page_commercial-and-campaigns.md) | `/productions/commercials` | ✅ Built |
 
 ### 4.7 Division: Educational
 
-| Page | Source File | Purpose |
-|---|---|---|
-| Global Passport Academy | [page_global-passport-academy-gpa.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_global-passport-academy-gpa.md) | Language learning platform · AI tutor "Amira" · University partnerships |
-| Aviation Simulator | [page_aviation-simulator.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_aviation-simulator.md) | Flight simulation training |
-| AI | [page_ai-2.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_ai-2.md) | AI initiatives |
-| Digital Currency & Finance | [page_digital-currency-and-21st-century-finance.md](file:///c:/Sudo_Hatter_Command/B&L%20WorldWide/docs/website_content/page_digital-currency-and-21st-century-finance.md) | Fintech educational content |
-
-> [!IMPORTANT]
-> There is **no dedicated landing page** for the Educational division either. A landing page should be created.
+| Page | Source File | Live Route | Status |
+|---|---|---|---|
+| **Education** (Landing) | — (new page, no WP source) | `/education` | ✅ Built — *gap from the old site closed* |
+| Global Passport Academy | [page_global-passport-academy-gpa.md](../website_content/page_global-passport-academy-gpa.md) | `/education/global-passport-academy` | ✅ Built |
+| Aviation Simulator | [page_aviation-simulator.md](../website_content/page_aviation-simulator.md) | `/education/aviation-sim` | ✅ Built |
+| AI | [page_ai-2.md](../website_content/page_ai-2.md) | `/education/ai-programs` | ✅ Built |
+| Digital Currency & Finance | [page_digital-currency-and-21st-century-finance.md](../website_content/page_digital-currency-and-21st-century-finance.md) | `/education/finance` | ✅ Built |
 
 ---
 
-## 5. Homepage Layout Architecture
+## 5. Homepage Layout Architecture (As Built)
 
-The homepage is the most content-dense page. Below is the vertical section breakdown as it existed on the original site:
+The homepage was **fully redesigned** for the rebuild. The old WordPress accordion switchboard is retired; `Home.jsx` now renders a modern marketing section stack:
 
 ```mermaid
-graph TD
-    subgraph "Homepage Vertical Flow"
+flowchart TD
+    subgraph HomeFlow ["Homepage Vertical Flow — Home.jsx"]
         direction TB
-        HERO["🎬 HERO SECTION<br/>Tagline + Logo + Globe Visual"]
-        HERO --> DIV1["📦 TECHNOLOGY<br/>Accordion: 8 sub-items"]
-        DIV1 --> DIV2["📦 DISTRIBUTION & LOGISTICS<br/>Accordion: 4 sub-items"]
-        DIV2 --> DIV3["📦 AVIATION<br/>Accordion: 6 sub-items"]
-        DIV3 --> DIV4["📦 INFRASTRUCTURE<br/>Accordion: 4 sub-items"]
-        DIV4 --> DIV5["📦 BAPTISTE PRODUCTIONS<br/>Accordion: 4 sub-items"]
-        DIV5 --> DIV6["📦 EDUCATIONAL DIVISION<br/>Accordion: 4 sub-items"]
-        DIV6 --> NEWS["📰 LATEST NEWS<br/>3 cards: Waterpark · Hard Rock · Cruise Port"]
-        NEWS --> SOCIAL["🤝 SOCIALLY RESPONSIBLE BUSINESS GROUP"]
-        SOCIAL --> PARTNERS["🏢 AFFILIATED STRATEGIC PARTNERS<br/>14 partner logos in marquee"]
-        PARTNERS --> FOOTER["📬 FOOTER<br/>Newsletter signup · Copyright · Legal"]
+        HERO["🎬 HeroVideo\nfull-bleed autoplay video, desktop + mobile sources\niOS-safe muted + loop"]
+        HERO --> MISSIONS["🎯 Missions\nmission / vision statements"]
+        MISSIONS --> STATS["📊 StatsBar\nheadline numbers"]
+        STATS --> GRID["🗂️ DivisionsGrid\nbento grid, 6 division cards with sub-brand pills"]
+        GRID --> STORY["📖 CompanyStory"]
+        STORY --> TRACK["🏆 TrackRecord"]
+        TRACK --> LEAD["👥 LeadershipTeaser\nlinks to /team (⚠️ read-more unwired)"]
+        LEAD --> NEWS["📰 NewsSection\n3 cards from data/news.js (⚠️ hrefs are '#')"]
+        NEWS --> PARTNERS["🏢 PartnersSection\npartner logos from data/partners.js"]
+        PARTNERS --> FOOTER["📬 Footer\nnewsletter signup (⚠️ unwired) · legal links (⚠️ '#')"]
     end
 
     style HERO fill:#e94560,stroke:#1a1a2e,color:#fff,stroke-width:2px
@@ -242,55 +259,35 @@ graph TD
     style PARTNERS fill:#0f3460,stroke:#1a1a2e,color:#fff
 ```
 
+Section content is data-driven where it matters: `src/data/divisions.js` (grid cards + pills), `src/data/news.js` (news cards), `src/data/partners.js` (partner logos).
+
+> [!NOTE]
+> Historical reference: the original WordPress homepage was Hero → 6 division accordions → News → Socially Responsible Business Group → 14-logo partner marquee → Footer. That structure survives only in the extracted content under `docs/website_content/page_home.md`.
+
 ---
 
-## 6. Page Template Patterns
+## 6. Page Template Patterns (As Built)
 
-All 33 pages follow one of **4 structural templates**:
+The WordPress site's 4 template patterns (Hub / Division Landing / Sub-Page / Gallery) mapped to a reusable component system in the rebuild:
 
-```mermaid
-graph LR
-    subgraph "Template A: Hub Page"
-        A1["Hero Banner"] --> A2["Division Accordions"]
-        A2 --> A3["News Section"]
-        A3 --> A4["Partner Marquee"]
-        A4 --> A5["Footer"]
-    end
+| Pattern | Built With | Used By |
+|---|---|---|
+| **Hub (Home)** | Custom section stack (see §5) | `/` |
+| **Division Landing** | `InnerPageHero` + intro copy + feature cards linking to children | The 6 `/division` landing pages |
+| **Sub-Page** | `InnerPageHero` + `PageSection` blocks + optional external CTA (PDF / partner site) | All 22 division child pages |
+| **Gallery** | Folded into sub-pages (Port & Hotel, Productions photo sections) — the duplicate lightbox from WP was de-duplicated | `/infrastructure/port-hotel`, `/productions` |
 
-    subgraph "Template B: Division Landing"
-        B1["Hero Image Gallery<br/>(3-4 photos)"] --> B2["Division Headline"]
-        B2 --> B3["Body Copy<br/>(Mission / Pillars)"]
-        B3 --> B4["Feature Cards<br/>(Sub-company intros)"]
-    end
-
-    subgraph "Template C: Sub-Page"
-        C1["Hero Image<br/>(1-2 photos)"] --> C2["Page Title"]
-        C2 --> C3["Body Text<br/>(1-3 paragraphs)"]
-        C3 --> C4["Optional CTA<br/>(External link / PDF)"]
-    end
-
-    subgraph "Template D: Gallery Page"
-        D1["Photo/Video Lightbox Grid"] --> D2["Description Text"]
-        D2 --> D3["Duplicate Lightbox<br/>(Repeated gallery)"]
-    end
-```
-
-| Template | Used By |
-|---|---|
-| **A: Hub** | Home |
-| **B: Division Landing** | Aviation, Technology, About Us, Film Production |
-| **C: Sub-Page** | Air Cargo, Flight Training, ATC, VTOL, Avionics, MRO, Tender, Digital Currencies, Plice, Splendor, ILTT, 24 Fresh, Duty Free, Mixed Use, Housing, Dee Lincoln, GPA, Aviation Sim, AI, Finance, Documentaries, Series, Commercials, Contact, Multilingual |
-| **D: Gallery** | Port & Hotel Development, Film Production (photo section) |
+Shared chrome: `Navbar` (scroll-aware, mega-menu dropdowns, mobile drawer), `Footer`, `ScrollReveal` animation wrapper, `ScrollToTop` on route change.
 
 ---
 
 ## 7. Content Relationships Diagram
 
-This shows how entities (sub-companies, brands, people) cross-reference across pages:
+Cross-cutting brands still appear on multiple pages, but the rebuild resolved the old duplication question: **each brand has exactly one page**, and other divisions cross-link to it.
 
 ```mermaid
-graph TD
-    subgraph "Cross-Cutting Entities"
+flowchart TD
+    subgraph Entities ["Cross-Cutting Entities"]
         PLICE_BRAND["Plice"]
         TENDER_BRAND["Tender / TenderDX"]
         DIGICURR_BRAND["Digital Currency"]
@@ -299,12 +296,12 @@ graph TD
         MAJESTIC["MAJESTIC P.L.T."]
     end
 
-    subgraph "Appears In"
-        TECH_PAGE["Technology Page"]
-        LOGISTICS_PAGE["Distribution Page"]
-        EDU_PAGE["Education Page"]
-        AVIATION_PAGE["Aviation Page"]
-        HOME_PAGE["Home Page"]
+    subgraph Pages ["Canonical Page + Cross-Links"]
+        TECH_PAGE["Technology pages"]
+        LOGISTICS_PAGE["Distribution pages"]
+        EDU_PAGE["Education pages"]
+        AVIATION_PAGE["Aviation pages"]
+        HOME_PAGE["Home (DivisionsGrid pills)"]
     end
 
     PLICE_BRAND --> TECH_PAGE
@@ -332,14 +329,14 @@ graph TD
     style DIGICURR_BRAND fill:#e94560,stroke:#1a1a2e,color:#fff
 ```
 
-> [!WARNING]
-> **Plice** and **Digital Currency** each appear in **two different divisions** (Technology AND Distribution/Education respectively). The rebuild should decide whether these are standalone division-agnostic brand pages or duplicated within each division's route tree.
+> [!NOTE]
+> **Resolved**: Plice lives at `/technology/plice` only; Digital Currencies at `/technology/digital-currencies` only. `/education/finance` is the *educational* digital-currency content and cross-links rather than duplicating.
 
 ---
 
 ## 8. Team Roster
 
-The Meet Our Team page contains **14 executive profiles**. Each profile consists of a headshot image, a name, and a 1-paragraph bio.
+The Meet Our Team page (`/team`) carries the executive profiles below. Each profile is a headshot, name, and 1-paragraph bio.
 
 | Name | Title / Domain |
 |---|---|
@@ -362,23 +359,32 @@ The Meet Our Team page contains **14 executive profiles**. Each profile consists
 
 ---
 
-## 9. External Link Inventory
+## 9. External Link Inventory (As Wired)
 
-These are outbound links to external products, partners, and resources found across pages:
+The authoritative, continuously updated tracker is [`_01_My/Docs/link_map.md`](../../_01_My/Docs/link_map.md). Summary:
 
-| External URL | Context |
-|---|---|
-| `https://tenderdx.com/` | Tender product site |
-| `https://ai.splendor.org` | Splendor AI Studio |
-| `https://deck.splendor.org/` | Deck Splendor platform |
-| `https://www.globalpassportacademy.org/` | GPA main site |
-| `https://youtu.be/ht5gcqfenIY` | Surface Wise video |
-| `https://www.thedailyherald.sx/...` | News article (Port approval) |
-| Various PDF links | Nanocar Tech PDF, ILTT PDF, Trident Presentation PDF |
+| External URL | Context | Status |
+|---|---|---|
+| `https://splendor.org/` | Tender, Splendor, Digital Currencies pages | ✅ Wired |
+| `https://deelincolnprime.com/` | Dee Lincoln page | ✅ Wired |
+| `https://www.globalpassportacademy.org/` | GPA page | ✅ Wired |
+| `https://www.majestic-plt.com/about` | Air Cargo page | ✅ Wired |
+| `https://www.instagram.com/princesspromenadesxm/` | Duty Free page | ✅ Wired |
+| Trident Presentation PDF (`b-lworldwide.company/wp-content/...`) | Port & Hotel | ✅ Wired — ⚠️ hosted on the **old WordPress domain** |
+| Veterans Housing PDF (same host) | Mixed Use / Housing | ✅ Wired — ⚠️ same dependency |
+| ILTT PDF (same host) | ILTT | ✅ Wired — ⚠️ same dependency |
+| Majestic PLT slides PDF (same host) | 24 Fresh | ✅ Wired — ⚠️ same dependency |
+| Daily Herald port-approval article · Hard Rock · Royal Caribbean | News context | Known, ⚠️ news cards still `href="#"` |
+| Plice website | Plice page | ❌ URL still to be supplied |
+
+> [!WARNING]
+> Four in-site PDFs are still served from `b-lworldwide.company/wp-content/uploads/...` — the **old WordPress host**. If/when that WordPress install is decommissioned or the domain is pointed at the new site, these links break. Migrate the PDFs into `website/public/` (or Firebase Storage) before cutover.
 
 ---
 
 ## 10. Image Asset Distribution by Division
+
+Historical inventory from the WordPress extraction (source images live in `docs/website_content/images/`; production copies in `website/public/images/`):
 
 | Division / Page | Image Count | Key Assets |
 |---|---|---|
@@ -394,67 +400,88 @@ These are outbound links to external products, partners, and resources found acr
 | **Distribution** | 4 | Product logos, fresh produce |
 | **Shared** | 11 | Re-used across multiple division pages |
 
+Video assets: `B&L Desktop Hero Section.mp4` / `B&L Mobile Hero Section.mp4` (source in `docs/website_content/`), deployed as `website/public/assets/hero-desktop.mp4` / `hero-mobile.mp4` (~16 MB each — candidates for compression, see §11).
+
 ---
 
-## 11. Gaps & Recommendations for the Rebuild
+## 11. Gaps & Recommendations — Scoreboard
 
-> [!CAUTION]
-> The following architectural issues were present in the original WordPress site and should be corrected in the rebuild.
+### ✅ Resolved in the rebuild
 
-| Issue | Recommendation |
+| Original Issue | How It Was Resolved |
 |---|---|
-| **No Division Landing Pages** for Distribution, Infrastructure, Education | Create 3 new landing pages matching the Aviation/Technology template |
-| **Duplicate content** — Plice appears under both Technology and Distribution | Consolidate into a single brand page with cross-links from both divisions |
-| **Digital Currency** appears in both Technology and Education | Same as above — single page, dual cross-links |
-| **No blog/news system** — News was hardcoded HTML | Implement a headless CMS or structured data source for news articles |
-| **Team photos served via WordPress shortcodes** (`[iheu_ultimate_oxi id="X"]`) | These shortcodes rendered circular avatar widgets. You will need actual headshot image files |
-| **No 404 page** | Create a branded 404 page |
-| **No search functionality** | Add site-wide search capability |
-| **Multilingual page is a stub** | Implement proper i18n with language toggle |
-| **Film Production page has duplicate lightbox galleries** | The same 15 photos are listed twice in the source. De-duplicate |
-| **Partner logos section** has 14 logos but no alt-text or names | Add proper partner identification and links |
+| No landing pages for Distribution, Infrastructure, Education | All 3 built (`/distribution`, `/infrastructure`, `/education`) |
+| Plice duplicated across Technology + Distribution | Single page at `/technology/plice`, cross-linked |
+| Digital Currency duplicated across Technology + Education | `/technology/digital-currencies` canonical; `/education/finance` is the educational angle |
+| Film Production duplicate lightbox galleries | De-duplicated in the rebuild |
+| Team photos behind WordPress shortcodes | Real headshot files extracted and used on `/team` |
+| Homepage accordion sprawl | Replaced with the §5 section stack |
+
+### ⚠️ Still open
+
+| Issue | Recommendation | Effort |
+|---|---|---|
+| **Contact + Subscribe forms do nothing** | Wire to a Firebase Function / Formspree endpoint with email notification — the site currently cannot capture a lead | S |
+| **Navbar "Contact Us" + hero CTAs unwired** | Link to `/contact`, `#divisions`, `/team` | XS |
+| **No 404 page** | Add a catch-all `<Route path="*">` with a branded 404 | XS |
+| **VTOL / Drones page missing** | Content already extracted — build `/aviation/vtol-drones` and add to nav | S |
+| **News hardcoded, cards link to `#`** | Short term: point the 3 cards at their real articles. Longer term: `/news` route from a JSON/CMS source | S / M |
+| **No per-route SEO** | Every route shares one `<title>`/meta from `index.html`; add per-page titles + meta, `sitemap.xml`, `robots.txt` | S |
+| **PDFs on old WordPress host** | Migrate 4 PDFs into the new site before domain cutover (see §9) | XS |
+| **Custom domain** | Site lives at `b-lworldwide.web.app`; plan the `b-lworldwide.company` DNS cutover (blocks on PDF migration) | S |
+| **Footer legal links are `#`** | Privacy Policy / Terms / Disclosures pages — needed once the newsletter form collects emails | M |
+| **No analytics** | Add GA4 (or Plausible) + Google Search Console so traffic and search performance are visible | XS |
+| **Hero videos are 16 MB each** | Re-encode (H.264 CRF ~28 / AV1), consider `preload="none"` + poster-first; biggest single performance lever | S |
+| **Single 523 kB JS bundle** | Route-level code-splitting with `React.lazy` | S |
+| **No site search** | Defer — low value at 33 mostly-static pages; nav + landings cover discovery | — |
+| **Multilingual / i18n** | Defer until content stabilizes; brand promise ("5 regions") makes ES/FR attractive later | L |
 
 ---
 
-## 12. Recommended Route Structure for New Stack
+## 12. Route Structure (As Built — `App.jsx`)
 
 ```
-/                           → Home
-/about                      → About Us
-/team                       → Meet Our Team
-/contact                    → Contact
-/technology                 → Technology Landing
-/technology/tender          → Tender
-/technology/digital-currency → Digital Currencies
-/technology/plice           → Plice
-/technology/splendor        → Splendor
-/distribution               → Distribution & Logistics Landing (NEW)
-/distribution/iltt          → ILTT
-/distribution/24-fresh      → 24 Fresh
-/distribution/duty-free     → Duty Free
-/aviation                   → Aviation Landing
-/aviation/air-cargo         → Majestic Air Cargo
-/aviation/flight-training   → Aerospace Flight Training
-/aviation/atc               → Air Traffic Control
-/aviation/vtol-drones       → VTOL / Drones
-/aviation/avionics          → Avionics & Power Plant
-/aviation/mro               → MRO
-/infrastructure             → Infrastructure Landing (NEW)
-/infrastructure/port        → Port & Hotel Development
-/infrastructure/residential → Mixed Use Residential
-/infrastructure/housing     → Affordable / VA / HUD Housing
-/infrastructure/food        → Dee Lincoln Prime (Food & Beverage)
-/productions                → Baptiste Productions Landing
-/productions/movies         → Movies (Captain Bronn)
-/productions/documentaries  → Documentaries (Afro Excelencia)
-/productions/series         → Series
-/productions/commercials    → Commercials & Campaigns
-/education                  → Educational Division Landing (NEW)
-/education/gpa              → Global Passport Academy
-/education/aviation-sim     → Aviation Simulator
-/education/ai               → AI
-/education/finance          → Digital Currency & 21st Century Finance
-/news                       → Latest News (NEW - dynamic)
+/                                      → Home                          ✅
+/about                                 → About Us                      ✅
+/team                                  → Meet Our Team                 ✅
+/contact                               → Contact                       ✅
+/technology                            → Technology Landing            ✅
+/technology/tender                     → Tender                        ✅
+/technology/digital-currencies         → Digital Currencies            ✅
+/technology/plice                      → Plice                         ✅
+/technology/splendor                   → Splendor                      ✅
+/distribution                          → Distribution Landing (NEW)    ✅
+/distribution/iltt                     → ILTT                          ✅
+/distribution/24-fresh                 → 24 Fresh                      ✅
+/distribution/duty-free                → Duty Free                     ✅
+/aviation                              → Aviation Landing              ✅
+/aviation/air-cargo                    → Majestic Air Cargo            ✅
+/aviation/flight-training              → Aerospace Flight Training     ✅
+/aviation/atc                          → Air Traffic Control           ✅
+/aviation/mro                          → Avionics + MRO (merged)       ✅
+/infrastructure                        → Infrastructure Landing (NEW)  ✅
+/infrastructure/port-hotel             → Port & Hotel Development      ✅
+/infrastructure/mixed-use              → Mixed Use Residential         ✅
+/infrastructure/housing                → Affordable / VA / HUD         ✅
+/infrastructure/dee-lincoln            → Dee Lincoln (Food & Bev)      ✅
+/productions                           → Productions Landing           ✅
+/productions/movies                    → Movies (Captain Bronn)        ✅
+/productions/documentaries             → Documentaries                 ✅
+/productions/series                    → Series                        ✅
+/productions/commercials               → Commercials & Campaigns       ✅
+/education                             → Education Landing (NEW)       ✅
+/education/global-passport-academy     → Global Passport Academy       ✅
+/education/aviation-sim                → Aviation Simulator            ✅
+/education/ai-programs                 → AI Programs                   ✅
+/education/finance                     → Digital Currency & Finance    ✅
+
+--- planned, not yet built ---
+/aviation/vtol-drones                  → VTOL / Drones                 ❌
+/news                                  → Latest News (dynamic)         ❌
+*                                      → 404 catch-all                 ❌
+(multilingual / i18n)                  → deferred                      ❌
 ```
 
-**Total Pages**: 33 existing + 4 new landing/utility pages = **37 routes**
+**Total**: 33 routes live · 3 planned routes + 404 outstanding.
+
+> Slug changes vs. the original plan: `digital-currency → digital-currencies`, `port → port-hotel`, `residential → mixed-use`, `food → dee-lincoln`, `gpa → global-passport-academy`, `ai → ai-programs`, and `avionics` + `mro` merged into `mro`.
