@@ -1,10 +1,19 @@
+import { useState } from 'react';
 import ScrollReveal from '../ScrollReveal';
 import { Link } from 'react-router-dom';
+import LegalModal from './LegalModal';
 
 export default function Footer() {
+  const [legalModal, setLegalModal] = useState({ isOpen: false, type: 'privacy' });
+
   const handleSubscribe = (e) => {
     e.preventDefault();
     alert("Subscribe action triggered (Endpoint pending)");
+  };
+
+  const openLegal = (e, type) => {
+    e.preventDefault();
+    setLegalModal({ isOpen: true, type });
   };
   return (
     <footer className="bg-[#274c77] text-[#e7ecef]/80 pt-20 pb-10 border-t border-white/10 overflow-hidden">
@@ -101,12 +110,18 @@ export default function Footer() {
 
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-[#e7ecef]/60 w-full lg:w-auto">
             <span>&copy; {new Date().getFullYear()} B&L Worldwide Holding Companies. All rights reserved.</span>
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-white transition-colors">Disclosures</a>
+            <button onClick={(e) => openLegal(e, 'privacy')} className="hover:text-white transition-colors">Privacy Policy</button>
+            <button onClick={(e) => openLegal(e, 'terms')} className="hover:text-white transition-colors">Terms of Service</button>
+            <button onClick={(e) => openLegal(e, 'disclosure')} className="hover:text-white transition-colors">Disclosures</button>
           </div>
         </ScrollReveal>
       </div>
+
+      <LegalModal 
+        isOpen={legalModal.isOpen} 
+        type={legalModal.type} 
+        onClose={() => setLegalModal({ ...legalModal, isOpen: false })} 
+      />
     </footer>
   );
 }
