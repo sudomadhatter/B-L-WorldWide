@@ -120,7 +120,7 @@ export default function Contact() {
                   <label htmlFor="message" className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Message</label>
                   <textarea id="message" required rows="4" className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block p-3 outline-none transition-colors resize-none" placeholder="Your message..."></textarea>
                 </div>
-                <button type="submit" className="w-full text-white bg-slate-900 hover:bg-blue-600 font-medium tracking-wide rounded-sm text-sm px-5 py-4 transition-colors duration-300 uppercase">
+                <button type="submit" className="w-full text-white bg-[#274c77] hover:bg-[#1b3554] font-bold tracking-widest rounded-sm text-sm px-5 py-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg uppercase">
                   Submit Inquiry
                 </button>
               </form>
