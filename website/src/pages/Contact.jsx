@@ -19,7 +19,7 @@ export default function Contact() {
           />
         </div>
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
-          <h1 className="text-4xl md:text-5xl font-light text-white tracking-wide uppercase mb-4">
+          <h1 className="text-4xl md:text-5xl font-light text-white tracking-tight uppercase mb-4">
             Contact Us
           </h1>
           <div className="w-24 h-1 bg-blue-500 mx-auto mb-6"></div>
@@ -36,7 +36,7 @@ export default function Contact() {
             
             {/* Contact Information */}
             <div className="flex flex-col justify-center">
-              <h2 className="text-3xl font-light text-slate-900 tracking-wide uppercase mb-8">
+              <h2 className="text-3xl font-light text-slate-900 tracking-tight uppercase mb-8">
                 Global Headquarters
               </h2>
               <p className="text-slate-600 font-light leading-relaxed mb-12">
@@ -96,7 +96,7 @@ export default function Contact() {
 
             {/* Contact Form */}
             <div className="bg-white p-10 border border-slate-200 shadow-sm rounded-sm">
-              <h3 className="text-2xl font-light text-slate-900 tracking-wide mb-6">Send an Inquiry</h3>
+              <h3 className="text-2xl font-light text-slate-900 tracking-tight mb-6">Send an Inquiry</h3>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>

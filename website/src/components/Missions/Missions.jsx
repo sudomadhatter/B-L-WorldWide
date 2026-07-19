@@ -162,14 +162,14 @@ export default function Missions() {
             <button 
               onClick={handlePrev}
               aria-label="Previous mission"
-              className="w-12 h-12 rounded-full border border-[#a3cef1]/30 bg-white/5 hover:bg-[#6096ba]/40 flex items-center justify-center text-[#a3cef1] transition-all backdrop-blur-md hover:scale-105"
+              className="w-12 h-12 rounded-full border border-[#a3cef1]/30 bg-white/5 hover:bg-[#6096ba]/40 flex items-center justify-center text-[#a3cef1] transition-all backdrop-blur-md hover:-translate-y-1"
             >
               <iconify-icon icon="solar:arrow-left-linear" width="24"></iconify-icon>
             </button>
             <button 
               onClick={handleNext}
               aria-label="Next mission"
-              className="w-12 h-12 rounded-full border border-[#a3cef1]/30 bg-white/5 hover:bg-[#6096ba]/40 flex items-center justify-center text-[#a3cef1] transition-all backdrop-blur-md hover:scale-105"
+              className="w-12 h-12 rounded-full border border-[#a3cef1]/30 bg-white/5 hover:bg-[#6096ba]/40 flex items-center justify-center text-[#a3cef1] transition-all backdrop-blur-md hover:-translate-y-1"
             >
               <iconify-icon icon="solar:arrow-right-linear" width="24"></iconify-icon>
             </button>

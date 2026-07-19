@@ -9,7 +9,7 @@ export default function CompanyStory() {
           {/* Left: Narrative Column */}
           <ScrollReveal>
             <div>
-              <h2 className="text-xs font-bold tracking-widest text-[#6096ba] uppercase mb-4">About B&L Worldwide</h2>
+              <h2 className="text-xs font-bold tracking-tight text-[#6096ba] uppercase mb-4">About B&L Worldwide</h2>
               <h3 className="text-4xl md:text-5xl font-semibold text-[#274c77] tracking-tight leading-tight mb-8">
                 Invest Locally,<br />Think Globally.
               </h3>

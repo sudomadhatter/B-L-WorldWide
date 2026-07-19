@@ -42,7 +42,7 @@ export default function LeadershipTeaser() {
         <ScrollReveal>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-16">
             <div>
-              <h2 className="text-xs font-bold tracking-widest text-[#a3cef1] uppercase mb-4">Leadership</h2>
+              <h2 className="text-xs font-bold tracking-tight text-[#a3cef1] uppercase mb-4">Leadership</h2>
               <h3 className="text-4xl md:text-5xl font-semibold text-white tracking-tight">The team behind<br className="hidden md:block"/>the vision.</h3>
             </div>
             <p className="text-[#e7ecef]/60 max-w-md text-sm md:text-base leading-relaxed md:text-right">

@@ -67,7 +67,7 @@ export default function Housing() {
                 href="https://b-lworldwide.company/wp-content/uploads/2025/11/Black-Horse-Gettysburg-PA-Veterans-Housing-and-Counseling-Center-Project-Overview-June-12-2024v1.pdf" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center px-8 py-4 bg-[#1b263b] !text-white font-semibold rounded-full overflow-hidden transition-all hover:scale-105 hover:shadow-xl"
+                className="group relative inline-flex items-center justify-center px-8 py-4 bg-[#1b263b] !text-white font-semibold rounded-full overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#274c77] to-[#1b263b] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <span className="relative z-10">Community Centered Development</span>

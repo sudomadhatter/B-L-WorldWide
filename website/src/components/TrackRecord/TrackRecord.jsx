@@ -39,7 +39,7 @@ export default function TrackRecord() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <ScrollReveal>
           <div className="text-center max-w-2xl mx-auto mb-20">
-            <h2 className="text-sm font-semibold tracking-widest text-[#6096ba] uppercase mb-3">Track Record</h2>
+            <h2 className="text-sm font-semibold tracking-tight text-[#6096ba] uppercase mb-3">Track Record</h2>
             <h3 className="text-3xl md:text-4xl font-semibold text-[#274c77] tracking-tight">Milestones that define us.</h3>
           </div>
         </ScrollReveal>

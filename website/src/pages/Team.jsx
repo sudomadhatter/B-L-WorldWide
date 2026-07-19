@@ -86,7 +86,7 @@ export default function Team() {
           />
         </div>
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
-          <h1 className="text-4xl md:text-5xl font-light text-white tracking-wide uppercase mb-4">
+          <h1 className="text-4xl md:text-5xl font-light text-white tracking-tight uppercase mb-4">
             Meet Our Leadership
           </h1>
           <div className="w-24 h-1 bg-blue-500 mx-auto mb-6"></div>
@@ -110,7 +110,7 @@ export default function Team() {
                 <div className="h-1 w-full bg-slate-200 group-hover:bg-blue-600 transition-colors duration-300"></div>
                 
                 <div className="p-8 flex flex-col flex-grow">
-                  <h3 className="text-xl font-medium text-slate-900 tracking-wide mb-4 group-hover:text-blue-700 transition-colors duration-300">
+                  <h3 className="text-xl font-medium text-slate-900 tracking-tight mb-4 group-hover:text-blue-700 transition-colors duration-300">
                     {member.name}
                   </h3>
                   

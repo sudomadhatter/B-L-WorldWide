@@ -35,7 +35,7 @@ export default function NewsSection() {
         <ScrollReveal>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-16">
             <div>
-              <h2 className="text-xs font-bold tracking-widest text-[#6096ba] uppercase mb-4">Newsroom</h2>
+              <h2 className="text-xs font-bold tracking-tight text-[#6096ba] uppercase mb-4">Newsroom</h2>
               <h3 className="text-4xl md:text-5xl font-semibold text-[#274c77] tracking-tight">Latest news.</h3>
             </div>
             <a href="#" className="hidden md:flex text-[#274c77] font-medium items-center gap-2 hover:text-[#6096ba] transition-colors pb-1 border-b border-[#8b8c89]/50 hover:border-[#6096ba]">

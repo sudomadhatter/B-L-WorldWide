@@ -95,7 +95,7 @@ export default function DivisionsGrid() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
         <ScrollReveal>
           <div className="max-w-3xl mb-20">
-            <h2 className="text-xs font-bold tracking-widest text-[#6096ba] uppercase mb-4">What We Do</h2>
+            <h2 className="text-xs font-bold tracking-tight text-[#6096ba] uppercase mb-4">What We Do</h2>
             <h3 className="text-4xl md:text-5xl font-semibold text-[#274c77] tracking-tight">Six divisions.<br className="hidden md:block"/>One global vision.</h3>
             <p className="mt-5 text-[#274c77] text-lg leading-relaxed font-medium mb-8">
               B&L Worldwide operates across six integrated verticals — sharing infrastructure, intelligence, and capital to deliver customized business solutions worldwide.

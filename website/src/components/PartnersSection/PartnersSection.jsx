@@ -24,7 +24,7 @@ export default function PartnersSection() {
         
         <ScrollReveal>
           <div className="text-center mb-16">
-            <h2 className="text-xs font-bold tracking-widest text-[#6096ba] uppercase mb-4">Our Network</h2>
+            <h2 className="text-xs font-bold tracking-tight text-[#6096ba] uppercase mb-4">Our Network</h2>
             <h3 className="text-3xl md:text-4xl font-semibold text-[#274c77] tracking-tight">
               Socially Responsible Business Group <br className="hidden md:block" />& Affiliated Strategic Partners
             </h3>

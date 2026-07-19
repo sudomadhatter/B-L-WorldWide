@@ -48,7 +48,7 @@ export default function PortHotel() {
                 href="https://b-lworldwide.company/wp-content/uploads/2025/11/pas-bl-TRIDENT_PRESENTATION.pdf" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center px-8 py-4 bg-[#1b263b] !text-white font-semibold rounded-full overflow-hidden transition-all hover:scale-105 hover:shadow-xl"
+                className="group relative inline-flex items-center justify-center px-8 py-4 bg-[#1b263b] !text-white font-semibold rounded-full overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#274c77] to-[#1b263b] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <span className="relative z-10">Check out our Portfolios</span>

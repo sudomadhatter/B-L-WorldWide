@@ -37,7 +37,7 @@ export default function Commercials() {
                 "Digital-first advertising for global audiences"
               ].map((item, idx) => (
                  <li key={idx} className="flex items-start">
-                   <iconify-icon icon="solar:check-circle-bold" className="text-[#6096ba] mt-1 mr-3 shrink-0" width="20"></iconify-icon>
+                   <iconify-icon icon="solar:check-circle-linear" className="text-[#6096ba] mt-1 mr-3 shrink-0" width="20"></iconify-icon>
                    <span className="text-slate-700 leading-relaxed">{item}</span>
                  </li>
               ))}

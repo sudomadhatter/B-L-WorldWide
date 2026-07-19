@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar'
 import Home from './pages/Home'
 import Footer from './components/Footer/Footer'
+import BackToTop from './components/BackToTop/BackToTop'
 
 // Top Level Pages
 import About from './pages/About'
@@ -109,6 +110,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <BackToTop />
     </div>
   )
 }
