@@ -1,4 +1,5 @@
 import ScrollReveal from '../ScrollReveal';
+import { Link } from 'react-router-dom';
 
 const leaders = [
   {
@@ -70,10 +71,10 @@ export default function LeadershipTeaser() {
 
         <ScrollReveal delay={600}>
           <div className="mt-12 text-center">
-            <a href="#" className="inline-flex items-center gap-2 !text-white text-sm font-medium hover:text-[#a3cef1] transition-colors" style={{ color: '#ffffff' }}>
+            <Link to="/team" className="inline-flex items-center gap-2 !text-white text-sm font-medium hover:text-[#a3cef1] transition-colors" style={{ color: '#ffffff' }}>
               View full team
               <iconify-icon icon="solar:arrow-right-linear" width="16" style={{ color: '#ffffff' }}></iconify-icon>
-            </a>
+            </Link>
           </div>
         </ScrollReveal>
 

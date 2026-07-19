@@ -2,21 +2,9 @@ import ScrollReveal from '../ScrollReveal';
 
 const milestones = [
   {
-    year: '2024',
-    title: 'Baptiste Productions Launches',
-    desc: 'Captain Bronn feature film enters post-production, marking B&L\'s expansion into entertainment and cultural narrative.',
-    align: 'left'
-  },
-  {
-    year: '2023',
-    title: 'Caribbean Port & Hotel Approval',
-    desc: 'Infrastructure division receives government approval for transformative port and hotel development in the Caribbean region.',
-    align: 'right'
-  },
-  {
-    year: '2022',
-    title: 'Global Passport Academy Launches AI Tutor',
-    desc: 'Education division deploys "Amira," an AI-powered language immersion platform, expanding the academy\'s global digital reach.',
+    year: '2018',
+    title: 'Formation of B&L Worldwide',
+    desc: 'B&L Worldwide Holding Companies formally incorporated in Fort Lauderdale, FL, unifying six strategic verticals under one global umbrella.',
     align: 'left'
   },
   {
@@ -26,9 +14,21 @@ const milestones = [
     align: 'right'
   },
   {
-    year: '2018',
-    title: 'Formation of B&L Worldwide',
-    desc: 'B&L Worldwide Holding Companies formally incorporated in Fort Lauderdale, FL, unifying six strategic verticals under one global umbrella.',
+    year: '2022',
+    title: 'Global Passport Academy Launches AI Tutor',
+    desc: 'Education division deploys "Amira," an AI-powered language immersion platform, expanding the academy\'s global digital reach.',
+    align: 'left'
+  },
+  {
+    year: '2023',
+    title: 'Caribbean Port & Hotel Approval',
+    desc: 'Infrastructure division receives government approval for transformative port and hotel development in the Caribbean region.',
+    align: 'right'
+  },
+  {
+    year: '2024',
+    title: 'Baptiste Productions Launches',
+    desc: 'Captain Bronn feature film enters post-production, marking B&L\'s expansion into entertainment and cultural narrative.',
     align: 'left'
   }
 ];

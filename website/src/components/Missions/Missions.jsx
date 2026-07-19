@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { clsx } from 'clsx';
 import ScrollReveal from '../ScrollReveal';
 
@@ -9,6 +10,7 @@ const missionsData = [
     desc: 'Bridging markets across the Americas, Caribbean, Africa, Europe, and Asia with integrated logistics and digital infrastructure.',
     img: '/images/air-cargo_01.jpg',
     icon: 'solar:global-linear',
+    path: '/distribution'
   },
   {
     id: 'innovate',
@@ -16,6 +18,7 @@ const missionsData = [
     desc: 'Pioneering next-generation technology from blockchain platforms and digital currencies to AI-powered solutions through Splendor Labs.',
     img: '/images/technology_shared_10.webp',
     icon: 'solar:cpu-bolt-linear',
+    path: '/technology'
   },
   {
     id: 'educate',
@@ -23,6 +26,7 @@ const missionsData = [
     desc: 'Cultivating the next generation of leaders through Global Passport Academy, aviation simulation, and 21st-century financial literacy.',
     img: '/images/about-us_shared_05.webp',
     icon: 'solar:square-academic-cap-linear',
+    path: '/education'
   },
   {
     id: 'build',
@@ -30,6 +34,7 @@ const missionsData = [
     desc: 'Developing transformative infrastructure — ports, mixed-use communities, and affordable housing that reshapes skylines and lives.',
     img: '/images/mixed-use-residential_01.jpg',
     icon: 'solar:buildings-3-linear',
+    path: '/infrastructure'
   },
   {
     id: 'create',
@@ -37,6 +42,7 @@ const missionsData = [
     desc: 'Telling stories that matter through Baptiste Productions — feature films, documentaries, and campaigns celebrating culture and excellence.',
     img: '/images/about-us_04.webp',
     icon: 'solar:clapperboard-open-linear',
+    path: '/productions'
   }
 ];
 
@@ -239,6 +245,17 @@ export default function Missions() {
                     <p className="text-[#e7ecef]/90 text-base md:text-lg font-light leading-relaxed drop-shadow-sm">
                       {mission.desc}
                     </p>
+                    
+                    {isActive && (
+                      <Link 
+                        to={mission.path} 
+                        className="inline-flex items-center gap-2 mt-6 text-[#a3cef1] font-bold hover:text-white transition-colors"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Explore Division
+                        <iconify-icon icon="solar:arrow-right-linear" width="20"></iconify-icon>
+                      </Link>
+                    )}
                   </div>
                 </div>
 

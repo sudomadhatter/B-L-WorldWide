@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ParticleCanvas from './ParticleCanvas'
 import styles from './Hero.module.css'
 
+import { Link } from 'react-router-dom'
 export default function Hero() {
   const sectionRef = useRef(null)
   const headlineRef = useRef(null)
@@ -63,11 +64,11 @@ export default function Hero() {
         </p>
 
         <div ref={ctaRef} className={styles.ctas}>
-          <button className="btn btn-primary">
+          <a href="#divisions" className="btn btn-primary">
             Explore Our Divisions
             <span className={styles.arrow}>→</span>
-          </button>
-          <button className="btn btn-ghost">Meet Our Team</button>
+          </a>
+          <Link to="/team" className="btn btn-ghost">Meet Our Team</Link>
         </div>
       </div>
 

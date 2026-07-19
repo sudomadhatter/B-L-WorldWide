@@ -195,7 +195,7 @@ export default function Navbar() {
 
         {/* CTA & Mobile Toggle */}
         <div className="flex items-center gap-4 z-50">
-          <button className={clsx(
+          <Link to="/contact" className={clsx(
             "hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold transition-all rounded-full shadow-lg hover:shadow-xl",
             {
               "bg-[#6096ba] text-white hover:bg-[#274c77]": isLight,
@@ -203,7 +203,7 @@ export default function Navbar() {
             }
           )}>
             Contact Us
-          </button>
+          </Link>
           
           <button 
             className="md:hidden p-2"
@@ -285,9 +285,9 @@ export default function Navbar() {
               </Link>
             )
           ))}
-          <button className="mt-4 bg-[#274c77] text-white w-full py-3 rounded-full font-medium shadow-md hover:bg-[#6096ba] transition-colors">
+          <Link to="/contact" className="mt-4 flex items-center justify-center bg-[#274c77] text-white w-full py-3 rounded-full font-medium shadow-md hover:bg-[#6096ba] transition-colors">
             Contact Us
-          </button>
+          </Link>
         </div>
       )}
     </header>

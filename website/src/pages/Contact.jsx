@@ -3,6 +3,10 @@ import InnerPageHero from '../components/InnerPageHero/InnerPageHero';
 import PageSection from '../components/PageSection/PageSection';
 
 export default function Contact() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Inquiry submitted (Endpoint pending)");
+  };
   return (
     <div className="flex flex-col w-full bg-slate-50 min-h-screen">
       {/* Hero Section */}
@@ -93,30 +97,30 @@ export default function Contact() {
             {/* Contact Form */}
             <div className="bg-white p-10 border border-slate-200 shadow-sm rounded-sm">
               <h3 className="text-2xl font-light text-slate-900 tracking-wide mb-6">Send an Inquiry</h3>
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="firstName" className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">First Name</label>
-                    <input type="text" id="firstName" className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block p-3 outline-none transition-colors" placeholder="John" />
+                    <input type="text" id="firstName" required className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block p-3 outline-none transition-colors" placeholder="John" />
                   </div>
                   <div>
                     <label htmlFor="lastName" className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Last Name</label>
-                    <input type="text" id="lastName" className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block p-3 outline-none transition-colors" placeholder="Doe" />
+                    <input type="text" id="lastName" required className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block p-3 outline-none transition-colors" placeholder="Doe" />
                   </div>
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Email Address</label>
-                  <input type="email" id="email" className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block p-3 outline-none transition-colors" placeholder="john.doe@company.com" />
+                  <input type="email" id="email" required className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block p-3 outline-none transition-colors" placeholder="john.doe@company.com" />
                 </div>
                 <div>
                   <label htmlFor="subject" className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Subject</label>
-                  <input type="text" id="subject" className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block p-3 outline-none transition-colors" placeholder="How can we assist?" />
+                  <input type="text" id="subject" required className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block p-3 outline-none transition-colors" placeholder="How can we assist?" />
                 </div>
                 <div>
                   <label htmlFor="message" className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Message</label>
-                  <textarea id="message" rows="4" className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block p-3 outline-none transition-colors resize-none" placeholder="Your message..."></textarea>
+                  <textarea id="message" required rows="4" className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block p-3 outline-none transition-colors resize-none" placeholder="Your message..."></textarea>
                 </div>
-                <button type="button" className="w-full text-white bg-slate-900 hover:bg-blue-600 font-medium tracking-wide rounded-sm text-sm px-5 py-4 transition-colors duration-300 uppercase">
+                <button type="submit" className="w-full text-white bg-slate-900 hover:bg-blue-600 font-medium tracking-wide rounded-sm text-sm px-5 py-4 transition-colors duration-300 uppercase">
                   Submit Inquiry
                 </button>
               </form>

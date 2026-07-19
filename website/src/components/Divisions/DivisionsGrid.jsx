@@ -100,10 +100,10 @@ export default function DivisionsGrid() {
             <p className="mt-5 text-[#274c77] text-lg leading-relaxed font-medium mb-8">
               B&L Worldwide operates across six integrated verticals — sharing infrastructure, intelligence, and capital to deliver customized business solutions worldwide.
             </p>
-            <button className="text-[#274c77] font-medium flex items-center gap-2 hover:text-[#6096ba] transition-colors pb-1 border-b border-[#8b8c89]/50 hover:border-[#6096ba] w-fit">
+            <Link to="/corporate-structure" className="text-[#274c77] font-medium flex items-center gap-2 hover:text-[#6096ba] transition-colors pb-1 border-b border-[#8b8c89]/50 hover:border-[#6096ba] w-fit">
               View full corporate structure
               <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
-            </button>
+            </Link>
           </div>
         </ScrollReveal>
 

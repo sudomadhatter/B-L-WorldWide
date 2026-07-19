@@ -1,6 +1,11 @@
 import ScrollReveal from '../ScrollReveal';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    alert("Subscribe action triggered (Endpoint pending)");
+  };
   return (
     <footer className="bg-[#274c77] text-[#e7ecef]/80 pt-20 pb-10 border-t border-white/10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -41,9 +46,12 @@ export default function Footer() {
           <ScrollReveal delay={100}>
             <h4 className="text-white font-semibold mb-6">Divisions</h4>
             <ul className="space-y-3 text-sm">
-              {['Technology', 'Distribution & Logistics', 'Aviation', 'Infrastructure', 'Baptiste Productions', 'Education'].map(link => (
-                <li key={link}><a href="#" className="hover:text-[#a3cef1] transition-colors">{link}</a></li>
-              ))}
+              <li><Link to="/technology" className="hover:text-[#a3cef1] transition-colors">Technology</Link></li>
+              <li><Link to="/distribution" className="hover:text-[#a3cef1] transition-colors">Distribution & Logistics</Link></li>
+              <li><Link to="/aviation" className="hover:text-[#a3cef1] transition-colors">Aviation</Link></li>
+              <li><Link to="/infrastructure" className="hover:text-[#a3cef1] transition-colors">Infrastructure</Link></li>
+              <li><Link to="/productions" className="hover:text-[#a3cef1] transition-colors">Baptiste Productions</Link></li>
+              <li><Link to="/education" className="hover:text-[#a3cef1] transition-colors">Education</Link></li>
             </ul>
           </ScrollReveal>
 
@@ -51,9 +59,12 @@ export default function Footer() {
           <ScrollReveal delay={200}>
             <h4 className="text-white font-semibold mb-6">Company</h4>
             <ul className="space-y-3 text-sm">
-              {['About Us', 'Leadership', 'Track Record', 'Investors', 'Careers', 'Newsroom'].map(link => (
-                <li key={link}><a href="#" className="hover:text-[#a3cef1] transition-colors">{link}</a></li>
-              ))}
+              <li><Link to="/about" className="hover:text-[#a3cef1] transition-colors">About Us</Link></li>
+              <li><Link to="/team" className="hover:text-[#a3cef1] transition-colors">Leadership</Link></li>
+              <li><a href="/#trackrecord" className="hover:text-[#a3cef1] transition-colors">Track Record</a></li>
+              <li><a href="#" className="hover:text-[#a3cef1] transition-colors">Investors</a></li>
+              <li><a href="#" className="hover:text-[#a3cef1] transition-colors">Careers</a></li>
+              <li><a href="#" className="hover:text-[#a3cef1] transition-colors">Newsroom</a></li>
             </ul>
           </ScrollReveal>
 
@@ -73,19 +84,20 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <ScrollReveal delay={400} className="pt-8 border-t border-white/10 flex flex-col lg:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4 w-full lg:w-auto">
+          <form onSubmit={handleSubscribe} className="flex items-center gap-4 w-full lg:w-auto">
             <span className="text-sm font-medium text-white whitespace-nowrap">Corporate Briefing</span>
             <div className="flex w-full lg:w-72 bg-[#1b3554]/50 rounded p-1 border border-white/10 focus-within:border-[#a3cef1] transition-colors">
               <input 
                 type="email" 
                 placeholder="Business email" 
+                required
                 className="bg-transparent border-none outline-none text-sm px-3 py-2 w-full text-white placeholder:text-[#e7ecef]/60"
               />
-              <button className="bg-[#e7ecef] text-[#274c77] px-4 rounded text-sm font-medium hover:bg-white transition-colors">
+              <button type="submit" className="bg-[#e7ecef] text-[#274c77] px-4 rounded text-sm font-medium hover:bg-white transition-colors">
                 Subscribe
               </button>
             </div>
-          </div>
+          </form>
 
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-[#e7ecef]/60 w-full lg:w-auto">
             <span>&copy; {new Date().getFullYear()} B&L Worldwide Holding Companies. All rights reserved.</span>
