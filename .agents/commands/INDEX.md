@@ -36,7 +36,7 @@ engines read them) — the sync skips them for the lobby menus and the global ca
 | **Media** | `webm-alpha-video` | convert a green-screen MP4 to alpha WebM. |
 
 **Renamed / retired (2026-07-14):** `sudo-incident-response` → `security_team_aviationchat` ·
-`1_update-maps` → `update-maps-indexes` · `1_live_testing_team` → `sudo-live-testing-team` (revamped) ·
+`update-maps-indexes` → `update-maps-indexes` · `1_live_testing_team` → `sudo-live-testing-team` (revamped) ·
 `1_push-to-main-and-deploy` → `sudo-push-e2e` (now carries the mandatory e2e gate) · deleted:
 `1_run-all-tests-back_front` (③ runs suites directly), `1_run-restart-dev-env` (absorbed into
 `sudo-live-testing-team`), `1_check-for-tech-stack-updates`, `1_clean-test-scripts`,
